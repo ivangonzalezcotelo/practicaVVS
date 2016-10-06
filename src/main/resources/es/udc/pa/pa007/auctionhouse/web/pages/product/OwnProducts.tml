@@ -1,0 +1,54 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+	t:type="Layout" t:title="title">
+
+ 	<t:grid t:source="productGridDataSource" t:row="product" t:rowsPerPage="rowsPerPage" 
+ 		t:exclude="owner, description, sendInfo, finishDate, category, launchPrice, version, CreateDate" 
+ 		t:add="actualWinner" t:inPlace="true">
+ 		
+	 	<p:prodNameHeader>
+			${message:prodName}
+		</p:prodNameHeader>
+	
+		<p:actualPriceHeader>
+			${message:actualPrice}
+		</p:actualPriceHeader>
+	
+		<p:timeRemainingHeader>
+			${message:timeRemaining}
+		</p:timeRemainingHeader>
+		
+		<p:actualWinnerHeader>
+			${message:actualWinner}
+		</p:actualWinnerHeader>
+		
+		<p:prodNameCell>
+	    	<t:pagelink page="product/productDetails" context="product.prodId">${product.prodName}</t:pagelink>
+	    </p:prodNameCell>
+
+	    <p:actualWinnerCell>
+	    	<t:TextOutput t:value="winnerBid">${winnerBid}</t:TextOutput>
+	    </p:actualWinnerCell>
+	    
+	    <p:actualPriceCell>
+	    	<t:output value="actualPrice" format="format"/>
+        </p:actualPriceCell>
+	    
+	    <p:timeRemainingCell>
+	    	<t:TextOutput t:value="timeRemaining">${timeRemaining}</t:TextOutput>
+	    </p:timeRemainingCell>
+	    
+		<p:empty>
+			<h4 class="alert alert-danger text-center">
+				<t:if test="productGridDataSource.userNotFound">
+					${message:userNotFound}
+					<p:else>
+						${message:noProducts}
+		            </p:else>
+				</t:if>
+			</h4>
+		</p:empty>
+	
+	</t:grid>
+
+</html>

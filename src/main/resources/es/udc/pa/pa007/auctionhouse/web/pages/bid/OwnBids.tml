@@ -1,0 +1,61 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+	t:type="Layout" t:title="title">
+
+ 	<t:grid t:source="bidGridDataSource" t:row="bid" t:rowsPerPage="rowsPerPage" t:add="prodName, currentWinner"
+ 		reorder="bidDate, maxBid, prodName, currentWinner, currentValue" t:inPlace="true">
+ 		
+ 		<p:prodNameHeader>
+			${message:prodName}
+		</p:prodNameHeader>
+	
+		<p:currentValueHeader>
+			${message:currentValue}
+		</p:currentValueHeader>
+	
+		<p:currentWinnerHeader>
+			${message:currentWinner}
+		</p:currentWinnerHeader>
+		
+		<p:maxBidHeader>
+			${message:maxBid}
+		</p:maxBidHeader>
+		
+		<p:bidDateHeader>
+			${message:bidDate}
+		</p:bidDateHeader>
+	    
+		<p:prodNameCell>
+	    	<t:pagelink page="product/productDetails" context="bid.productId.prodId">${bid.productId.prodName}</t:pagelink>
+	    </p:prodNameCell>
+	    
+	    <p:currentWinnerCell>
+	    	<t:TextOutput t:value="actualWin">${actualWin}</t:TextOutput>
+	    </p:currentWinnerCell>
+	            
+	    <p:maxBidCell>
+         	<t:output value="Bid.maxBid" format="format"/>
+        </p:maxBidCell>
+        
+        <p:currentValueCell>
+         	<t:output value="Bid.currentValue" format="format"/>
+        </p:currentValueCell>
+        			
+	    <p:bidDateCell>
+	    	<t:output t:value="bid.bidDate.time" format="message:dateFormat"/>
+	    </p:bidDateCell>
+	    
+		<p:empty>
+			<h4 class="alert alert-danger text-center">
+				<t:if test="bidGridDataSource.userNotFound">
+					${message:userNotFound}
+					<p:else>
+						${message:noBids}
+		            </p:else>
+				</t:if>
+			</h4>
+		</p:empty>
+		
+	</t:grid>
+
+</html>

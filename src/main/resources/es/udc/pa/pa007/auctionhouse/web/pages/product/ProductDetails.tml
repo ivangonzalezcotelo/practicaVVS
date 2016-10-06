@@ -1,0 +1,57 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter"
+	t:type="Layout" t:title="title">
+	
+	<div class="form-group">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>${message:prodName-label}</th>
+					<td>${product.prodName}</td>
+				</tr>
+				<tr>
+					<th>${message:category-label}</th>
+					<td>${category}</td>
+				</tr>
+				<tr>
+					<th>${message:description-label}</th>
+					<td>${product.description}</td>
+				</tr>
+				<tr>
+					<th>${message:sendInfo-label}</th>
+					<td>${product.sendInfo}</td>
+				</tr>
+				<tr>
+					<th>${message:owner-label}</th>
+					<td>${owner}</td>
+				</tr>
+				<tr>
+					<th>${message:launchPrice-label}</th>
+					<td><t:output t:value="product.launchPrice" format="format"/></td>
+					<!-- <td>${product.launchPrice}</td> -->
+				</tr>
+				<tr>
+					<th>${message:currentPrice-label}</th>
+					<td><t:output t:value="product.actualPrice" format="format"/></td>
+					<!-- <td>${product.actualPrice}</td> -->
+				</tr>
+				<tr>
+					<th>${message:createDate-label}</th>
+					<td><t:output t:value="product.createDate.time" format="message:dateFormat"/></td>
+				</tr>
+				<tr>
+					<th>${message:remainingTime-label}</th>
+					<td>${remainingTime}</td>
+				</tr>
+				<tr>
+					<th>${message:winner-label}</th>
+					<td>${currentWinner}</td>
+				</tr>
+			</table>
+			
+		    <div class="text-center">
+		    	<!-- <t:pagelink page="bid/makeBid" context="productId">${message:makebid}</t:pagelink>-->
+		    	<a href="#" t:type="PageLink" t:page="bid/MakeBid" t:context="productId">${message:makebid}</a>
+		    </div>
+		</div>
+    </div>	     
+</html>

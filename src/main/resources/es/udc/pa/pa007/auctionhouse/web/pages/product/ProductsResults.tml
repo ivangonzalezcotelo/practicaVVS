@@ -1,0 +1,70 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter"
+	t:type="Layout" t:title="title">
+	
+	<form t:type="Form" class="form-horizontal" t:id="searchForm">
+		
+		<t:errors/>
+		
+		<div class="eg">
+
+	        <t:if test ="catId">
+		        <table t:type="grid" t:source="source" t:row="product" t:rowsPerPage="4" t:pagerPosition="top" t:add="owner"
+		        	   t:exclude = "winnerBid,sendInfo, createDate, finishDate, description" t:model="mymodel" 
+		        	   t:inPlace="true">[Grid here]
+		        	<p:prodNameCell>
+	                	<t:pagelink page="product/productDetails" context="product.prodId">${product.prodName}</t:pagelink>
+	           		</p:prodNameCell>
+	           		
+	           		<p:ownerCell>
+	                	${product.owner.loginName}
+	           		</p:ownerCell>
+	           		
+	           		<p:actualPriceCell>
+	           			<t:output value="product.actualPrice" format="format"/>
+           			</p:actualPriceCell>
+           			
+           			<p:launchPriceCell>
+	           			<t:output value="product.launchPrice" format="format"/>
+           			</p:launchPriceCell>
+		    		<p:empty>
+						<h4 class="alert alert-danger text-center">
+							${message:noProducts}
+				        </h4>
+					</p:empty>
+		        </table>
+			        <p:else> 
+			        	<table t:type="grid" t:source="source" t:row="product" t:rowsPerPage="4" t:pagerPosition="top" t:add="owner, category"
+				        	   t:exclude = "winnerBid,sendInfo, createDate, finishDate, description" t:model="mymodel"
+				        	   t:inPlace="true">[Grid here]
+				        	<p:prodNameCell>
+			                	<t:pagelink page="product/productDetails" context="product.prodId">${product.prodName}</t:pagelink>
+			           		</p:prodNameCell>
+			           		<p:categoryCell>
+		                		${product.category.catName}
+		           			</p:categoryCell>
+			           		<p:ownerCell>
+			                	${product.owner.loginName}
+			           		</p:ownerCell>
+			           		
+			           		<p:actualPriceCell>
+		           				<t:output value="product.actualPrice" format="format"/>
+	           				</p:actualPriceCell>
+	           			
+	           				<p:launchPriceCell>
+		           				<t:output value="product.launchPrice" format="format"/>
+	           				</p:launchPriceCell>
+	           				<p:empty>
+								<h4 class="alert alert-danger text-center">
+									${message:noProducts}
+				        		</h4>
+							</p:empty>
+			        	</table>
+			        </p:else>	
+		    </t:if>
+
+	    </div>
+	     
+	     
+	</form>
+	
+</html>
