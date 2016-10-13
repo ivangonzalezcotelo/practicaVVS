@@ -427,4 +427,10 @@
         </plugins>
 
     </build>
+	<repositories>
+		<repository>
+			<id>lib</id>
+			<url>file:///${project.basedir}/lib/</url>
+		</repository>
+	</repositories>
 </project>
