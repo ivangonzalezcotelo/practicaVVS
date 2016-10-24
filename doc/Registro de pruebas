@@ -1,0 +1,17 @@
+PR-UN-001
+
+BidDao
+findByUser()
+Comprobación de la recolección de las apuestas en una lista.
+id usuario (Long), index (int), contador (int)
+Lista de apuestas (List<Bid>)
+Creados datos en la BD de usuarios, categorías,productos y apuestas
+
+PR-UN-002
+
+BidDao
+getNumberOfBidsByUserId
+Comprobación de recolección de las apuestas relaccionadas con un usuario dado.
+id usuario (Long)
+Numero de apuestas (int)
+Creados datos en la BD de usuarios, categorías,productos y apuestas
