@@ -73,7 +73,8 @@
                 <testDataSource.url>${dataSource.url}test</testDataSource.url>
                 <dataSource.createTablesScript>1-MySQLCreateTables.sql</dataSource.createTablesScript>
                 <dataSource.createDataScript>2-MySQLCreateData.sql</dataSource.createDataScript>
-
+				<dataSource.createDataTestScript>3-MySQLCreateDataTest.sql</dataSource.createDataTestScript>
+				
                 <!-- Hibernate properties -->
                 <hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
             </properties>
@@ -191,8 +192,7 @@
         <dependency> 
         	<groupId>org.mockito</groupId> 
         	<artifactId>mockito-core</artifactId> 
-        	<version>2.2.8</version> 
-        	<type>pom</type> 
+        	<version>2.2.8</version>
         </dependency>
     </dependencies>
 
@@ -375,6 +375,7 @@
                                 <basedir>${basedir}</basedir>
                                 <includes>
                                     <include>src/sql/${dataSource.createTablesScript}</include>
+                                	<include>src/sql/${dataSource.createDataTestScript}</include>
                                 </includes>
                             </fileset>
                         </configuration>
