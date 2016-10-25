@@ -15,3 +15,12 @@ Comprobación de recolección de las apuestas relaccionadas con un usuario dado.
 id usuario (Long)
 Numero de apuestas (int)
 Creados datos en la BD de usuarios, categorías,productos y apuestas
+
+PR-UN-003
+
+UserProfileDao
+findUserByLogin
+Comprobación de búsqueda de un usuario en la BD a través de su login.
+login de usuario (String)
+usuario (UserProfile)
+Creados datos en la BD de usuarios, categorías,productos y apuestas
