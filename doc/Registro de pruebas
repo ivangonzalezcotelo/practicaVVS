@@ -10,7 +10,7 @@ Creados datos en la BD de usuarios, categorías,productos y apuestas
 PR-UN-002
 
 BidDao
-getNumberOfBidsByUserId
+getNumberOfBidsByUserId()
 Comprobación de recolección de las apuestas relaccionadas con un usuario dado.
 id usuario (Long)
 Numero de apuestas (int)
@@ -19,8 +19,179 @@ Creados datos en la BD de usuarios, categorías,productos y apuestas
 PR-UN-003
 
 UserProfileDao
-findUserByLogin
+findUserByLogin()
 Comprobación de búsqueda de un usuario en la BD a través de su login.
 login de usuario (String)
 usuario (UserProfile)
 Creados datos en la BD de usuarios, categorías,productos y apuestas
+
+PR-UN-004
+
+UserProfileDao
+findUserByLogin()
+Comprobación de búsqueda de un usuario que no existe en la BD a través de su login.
+login de usuario (String)
+Excepción de usuario no encontrado(InstanceNotFoundException)
+Creados datos en la BD de usuarios, categorías,productos y apuestas
+
+PR-UN-005
+
+UserService
+registerUser()
+Comprobación de resgistro de usuario nuevo.
+login (String), password de usuario (String), nombre (String), apellido (String), email (String)
+usuario (UserProfile)
+Ninguna.
+
+PR-UN-006
+
+UserService
+registerUser()
+Comprobación de resgistro de usuario ya existente.
+login (String), password de usuario (String), nombre (String), apellido (String), email (String)
+Excepcion de usuario duplicado (DuplicateInstanceException)
+Creado el usuario a duplicar.
+
+PR-UN-007
+
+UserService
+login()
+Comprobación de logueo de un usuario con password sin encriptar.
+login (String), password de usuario (String), encriptado (boolean)
+usuario (UserProfile)
+Creación del usuario a loguear.
+
+PR-UN-008
+
+UserService
+login()
+Comprobación de logueo de un usuario con password encriptado.
+login (String), password de usuario (String), encriptado (boolean)
+usuario (UserProfile)
+Creación del usuario a loguear
+
+PR-UN-009
+
+UserService
+login()
+Comprobación de logueo de un usuario con password incorrecto y sin encriptar.
+login (String), password de usuario (String), encriptado (boolean)
+Excepción de contraseña incorrecta (IncorrectPasswordException)
+Creación del usuario a loguear
+
+PR-UN-010
+
+UserService
+login()
+Comprobación de logueo de un usuario con password incorrecto y encriptada.
+login (String), password de usuario (String), encriptado (boolean)
+Excepción de contraseña incorrecta (IncorrectPasswordException)
+Creación del usuario a loguear
+
+PR-UN-011
+
+UserService
+findUserProfile()
+Busqueda de un usuario por id existente.
+id (Long)
+usuario (UserProfile)
+Creación del usuario a buscar
+
+PR-UN-012
+
+UserService
+findUserProfile()
+Busqueda de un usuario por id inexistente.
+id (Long)
+Excepción de usuario no encontrado (InstanceNotFoundException)
+Ninguna
+
+PR-UN-013
+
+UserService
+updateUserProfileDetails()
+Cambiar los datos de un usuario existente.
+id (Long), nombre (String), apellido (String), email (String)
+usuario (UserProfile)
+Creado el usuario que disponemos a cambiar los datos
+
+PR-UN-014
+
+UserService
+updateUserProfileDetails()
+Cambiar los datos de un usuario inexistente.
+id (Long), nombre (String), apellido (String), email (String)
+Excepcion de usuario no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-015
+
+UserService
+changePassword()
+Cambiar la contraseña de un usuario existente.
+id (Long), password viejo (String), password nuevo (String)
+usuario (UserProfile)
+Creado el usuario que disponemos a cambiar los datos
+
+PR-UN-016
+
+UserService
+updateUserProfileDetails()
+Cambiar los datos de un usuario inexistente.
+id (Long), password viejo (String), password nuevo (String)
+Excepcion de usuario no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-017
+
+UserService
+updateUserProfileDetails()
+Cambiar los datos de un usuario existente con error en password viejo.
+id (Long), password viejo (String), password nuevo (String)
+Excepcion de contraseña incorrecta (IncorrectPasswordException)
+Ninguna
+
+PR-UN-018
+
+ProductDao
+findByKeyAndCategory()
+Buscar productos por key y categoria en todas sus variantes.
+key (String), category (Long), startIndex (int), count (int)
+Lista de productos activos encontrados
+Productos guardados en la BD
+
+PR-UN-019
+
+ProductDao
+findByOwner()
+Buscar productos por propietario.
+id (Long), startIndex (int), count (int)
+Lista de productos activos encontrados
+Productos guardados en la BD
+
+PR-UN-020
+
+ProductDao
+getNumberOfProducts()
+Saber el numero de productos de un usuario.
+id (Long)
+numero de productos (int)
+Productos guardados en la BD
+
+PR-UN-021
+
+ProductDao
+getNumberOfSearchProducts()
+Saber el numero de productos que contiene una busqueda
+key (String), category (Long)
+numero de productos (int)
+Productos guardados en la BD
+
+PR-UN-022
+
+CategoryDao
+getAllCategories()
+Saber el numero de categorias existentes
+ninguno
+Lista de categorias (List)
+Categorias guardadas en BD

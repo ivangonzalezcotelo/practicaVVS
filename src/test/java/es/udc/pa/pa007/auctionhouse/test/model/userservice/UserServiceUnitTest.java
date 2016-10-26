@@ -28,8 +28,6 @@ import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-@ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
-@Transactional
 public class UserServiceUnitTest {
 
 	
@@ -41,7 +39,7 @@ public class UserServiceUnitTest {
 	
 	
 	// Test de registro de usuario correcto
-	
+	/* PR-UN-005 */
 	@Test
 	public void testRegisterUser() throws DuplicateInstanceException, InstanceNotFoundException{
 		
@@ -62,7 +60,7 @@ public class UserServiceUnitTest {
 	}
 	
 	// Test de registro de usuario ya existente
-	
+	/* PR-UN-006 */
 	@Test(expected=DuplicateInstanceException.class)
 	public void testRegisterUserExistent() throws DuplicateInstanceException, InstanceNotFoundException{
 		
@@ -78,7 +76,7 @@ public class UserServiceUnitTest {
 	}
 
 	// Test de login correcto con la pass sin encriptar
-	
+	/* PR-UN-007 */
 	@Test
 	public void testLogin() throws InstanceNotFoundException, IncorrectPasswordException, DuplicateInstanceException{
 				
@@ -98,7 +96,7 @@ public class UserServiceUnitTest {
 	}	
 	
 	// Test de login correcto con la pass encriptada
-	
+	/* PR-UN-008 */
 	@Test
 	public void testLoginEncrypted() throws InstanceNotFoundException, IncorrectPasswordException, DuplicateInstanceException{
 				
@@ -118,7 +116,7 @@ public class UserServiceUnitTest {
 	}
 	
 	// Test de login incorrecto con la pass sin encriptar
-	
+	/* PR-UN-009 */
 	@Test(expected=IncorrectPasswordException.class)
 	public void testLoginBadPass() throws InstanceNotFoundException, IncorrectPasswordException, DuplicateInstanceException{
 		
@@ -133,7 +131,7 @@ public class UserServiceUnitTest {
 	}	
 	
 	// Test de login incorrecto con la pass encriptada
-	
+	/* PR-UN-010 */
 	@Test(expected=IncorrectPasswordException.class)
 	public void testLoginEncryptedBadPass() throws InstanceNotFoundException, IncorrectPasswordException, DuplicateInstanceException{
 				
@@ -148,7 +146,7 @@ public class UserServiceUnitTest {
 	}
 	
 	/* Test de busqueda de usuario por id de usuario existente */
-	
+	/* PR-UN-011 */
 	@Test
 	public void testFindUser() throws InstanceNotFoundException{
 				
@@ -166,7 +164,7 @@ public class UserServiceUnitTest {
 	}
 	
 	/* Test de busqueda de usuario por id de usuario inexistente */
-	
+	/* PR-UN-012 */
 	@Test(expected=InstanceNotFoundException.class)
 	public void testFindUserNonExistent() throws InstanceNotFoundException{
 				
@@ -178,7 +176,7 @@ public class UserServiceUnitTest {
 	
 	
 	/* Actualización de datos de usuario  */
-	
+	/* PR-UN-013 */
 	@Test
 	public void testUpdateUserExistent() throws InstanceNotFoundException{
 				
@@ -197,7 +195,7 @@ public class UserServiceUnitTest {
 	}
 	
 	/* Actualización de datos de usuario no existente */
-	
+	/* PR-UN-014 */
 	@Test(expected=InstanceNotFoundException.class)
 	public void testUpdateUserNonExistent() throws InstanceNotFoundException{
 				
@@ -214,7 +212,7 @@ public class UserServiceUnitTest {
 	
 	
 	/* Actualización de contraseña */
-	
+	/* PR-UN-015 */
 	@Test
 	public void testChangePass() throws InstanceNotFoundException, IncorrectPasswordException{
 				
@@ -230,7 +228,7 @@ public class UserServiceUnitTest {
 	}
 	
 	/* Actualización de contraseña de usuario no existente */
-	
+	/* PR-UN-016 */
 	@Test(expected=InstanceNotFoundException.class)
 	public void testChangePassUserNonExistent() throws InstanceNotFoundException, IncorrectPasswordException{
 				
@@ -246,7 +244,7 @@ public class UserServiceUnitTest {
 
 	
 	/* Actualización de contraseña con contraseña antigua mal */
-	
+	/* PR-UN-017 */
 	@Test(expected=IncorrectPasswordException.class)
 	public void testChangePassBadPass() throws InstanceNotFoundException, IncorrectPasswordException{
 				

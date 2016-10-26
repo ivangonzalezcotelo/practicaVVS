@@ -25,8 +25,6 @@ import es.udc.pa.pa007.auctionhouse.model.product.Product;
 import es.udc.pa.pa007.auctionhouse.model.product.ProductDao;
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfile;
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfileDao;
-import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
-import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
@@ -81,7 +79,7 @@ public class BidDaoTest {
 	}
 	
 	/* Test de recuperación de lsita de apuestas para usuario existente */
-	
+	/* PR-UN-001 */
 	@Test
 	public void testFindByUser() {
 		
@@ -91,14 +89,14 @@ public class BidDaoTest {
 	}
 	
 	/* Test de recuperación de número de apuestas para usuario existente */
-	
+	/* PR-UN-002 */
 	@Test
-	public void testCountBids() 
-			throws InstanceNotFoundException{
+	public void testCountBids() {
 		
 		int numBids = bidDao.getNumberOfBidsByUserId(getBidderId());
 		
 		assertEquals (1, numBids);
 	}
 	
+
 }

@@ -24,7 +24,7 @@ public class UserProfileDaoTest {
 	private  UserProfileDao userProfileDao;
 	
 	/* Test de busqueda de usuario existente por login */
-	
+	/* PR-UN-003 */
 	@Test	
 	public void testFindByLogin() throws InstanceNotFoundException{
     	
@@ -41,7 +41,7 @@ public class UserProfileDaoTest {
 	}
 	
 	/* Test de busqueda de usuario no existente por login */
-	
+	/* PR-UN-004 */
 	@Test(expected=InstanceNotFoundException.class)	
 	public void testFindByLoginUserNonExistent() throws InstanceNotFoundException{
     	
