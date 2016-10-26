@@ -195,3 +195,84 @@ Saber el numero de categorias existentes
 ninguno
 Lista de categorias (List)
 Categorias guardadas en BD
+
+PR-UN-023
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción con fecha ya expirada
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-024
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción siendo el mismo usuario el pujador y el propietario
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-025
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción siendo la primera puja menor al precio de salida.
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-026
+
+BidService
+makeBid()
+Comprobar creación de pujas y actualización de precio con los valores frontera(menor, igual y mayor que el actual)
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-027
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción con segunda puja menor que el precio actual.
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-028
+
+BidService
+listBids()
+Comprobar lanzamiento de excepción con un usuario no existente
+user (Long), startIndex (int), contador(int)
+lista de apuestas del user (List<Bid>)
+Productos,usuarios y pujas guardados en BD
+
+PR-UN-029
+
+BidService
+listBids()
+Comprobar listado de pujas de un usuario dado
+user (Long), startIndex (int), contador(int)
+lista de apuestas del user (List<Bid>)
+Productos,usuarios y pujas guardados en BD
+
+PR-UN-030
+
+BidService
+getNumberOfBidsByUserId()
+Comprobar lanzamiento de excepción con un usuario no existente
+user (Long)
+número de apuestas del user (int)
+usuarios guardados en BD
+
+PR-UN-031
+
+BidService
+getNumberOfBidsByUserId()
+Comprobar número de apuestas realizadas por un usuario
+user (Long)
+número de apuestas del user (int)
+usuarios guardados en BD
