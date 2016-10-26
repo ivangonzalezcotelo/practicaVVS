@@ -39,6 +39,8 @@ public class CategoryDaoTest {
 		
 	}
 	
+	
+	/* PR-UN-022 */
 	@Test
 	public void getAllCategoriesTest(){
 		

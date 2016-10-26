@@ -96,6 +96,7 @@ public class ProductDaoTest {
 		}
 		
 	
+	/* PR-UN-018 */
 	@Test
 	public void findByKeyAndCategoryTest(){
 		
@@ -126,6 +127,7 @@ public class ProductDaoTest {
 		
 	}
 
+	/* PR-UN-019 */
 	@Test
 	public void findByOwnerTest(){
 	
@@ -142,6 +144,7 @@ public class ProductDaoTest {
 		assertEquals(0,list.size());
 	}
 
+	/* PR-UN-020 */
 	@Test
 	public void getNumberOfProductsTest(){
 		
@@ -159,7 +162,7 @@ public class ProductDaoTest {
 		
 	}
 
-	
+	/* PR-UN-021 */
 	@Test
 	public void getNumberOfSearchProductsTest(){
 		
