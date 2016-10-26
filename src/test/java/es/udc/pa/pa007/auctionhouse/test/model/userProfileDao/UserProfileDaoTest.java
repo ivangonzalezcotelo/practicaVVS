@@ -18,17 +18,20 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
 @Transactional
-public class UserProfileTest {
+public class UserProfileDaoTest {
 
 	@Autowired
 	private  UserProfileDao userProfileDao;
 	
+	/* Test de busqueda de usuario existente por login */
+	
 	@Test	
-	public void findbyLoginTest() throws InstanceNotFoundException{
+	public void testFindByLogin() throws InstanceNotFoundException{
     	
-		UserProfile user1 = new UserProfile("user3", "PASS", "John", "Day", "john@gmail.com" );
+		UserProfile user1 = new UserProfile("user", "PASS", "John", "Day", "john@gmail.com" );
 		String login = user1.getLoginName();
-    	UserProfile user2 = userProfileDao.findByLoginName(login);
+    	userProfileDao.save(user1);
+		UserProfile user2 = userProfileDao.findByLoginName(login);
     	assertEquals(user1.getLoginName(),user2.getLoginName());
     	assertEquals(user1.getFirstName() ,user2.getFirstName());
     	assertEquals(user1.getLastName(),user2.getLastName());
@@ -36,4 +39,22 @@ public class UserProfileTest {
     	assertEquals(user1.getEmail() ,user2.getEmail());
    			
 	}
+	
+	/* Test de busqueda de usuario no existente por login */
+	
+	@Test(expected=InstanceNotFoundException.class)	
+	public void testFindByLoginUserNonExistent() throws InstanceNotFoundException{
+    	
+		UserProfile user1 = new UserProfile("user", "PASS", "John", "Day", "john@gmail.com" );
+		String login = "NoRealUser";
+    	userProfileDao.save(user1);
+		UserProfile user2 = userProfileDao.findByLoginName(login);
+    	assertEquals(user1.getLoginName(),user2.getLoginName());
+    	assertEquals(user1.getFirstName() ,user2.getFirstName());
+    	assertEquals(user1.getLastName(),user2.getLastName());
+    	assertEquals(user1.getEncryptedPassword() ,user2.getEncryptedPassword());
+    	assertEquals(user1.getEmail() ,user2.getEmail());
+   			
+	}
+	
 }
