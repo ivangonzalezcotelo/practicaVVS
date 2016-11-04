@@ -198,6 +198,87 @@ Categorias guardadas en BD
 
 PR-UN-023
 
+BidService
+makeBid()
+Comprobar lanzamiento de excepción con fecha ya expirada
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-024
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción siendo el mismo usuario el pujador y el propietario
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-025
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción siendo la primera puja menor al precio de salida.
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-026
+
+BidService
+makeBid()
+Comprobar creación de pujas y actualización de precio con los valores frontera(menor, igual y mayor que el actual)
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-027
+
+BidService
+makeBid()
+Comprobar lanzamiento de excepción con segunda puja menor que el precio actual.
+user (Long), product (Long), maxPrice (BigDecimal)
+bid (Bid)
+Productos y usuarios guardados en BD
+
+PR-UN-028
+
+BidService
+listBids()
+Comprobar lanzamiento de excepción con un usuario no existente
+user (Long), startIndex (int), contador(int)
+lista de apuestas del user (List<Bid>)
+Productos,usuarios y pujas guardados en BD
+
+PR-UN-029
+
+BidService
+listBids()
+Comprobar listado de pujas de un usuario dado
+user (Long), startIndex (int), contador(int)
+lista de apuestas del user (List<Bid>)
+Productos,usuarios y pujas guardados en BD
+
+PR-UN-030
+
+BidService
+getNumberOfBidsByUserId()
+Comprobar lanzamiento de excepción con un usuario no existente
+user (Long)
+número de apuestas del user (int)
+usuarios guardados en BD
+
+PR-UN-031
+
+BidService
+getNumberOfBidsByUserId()
+Comprobar número de apuestas realizadas por un usuario
+user (Long)
+número de apuestas del user (int)
+usuarios guardados en BD
+
+PR-UN-032
+
 ProductService
 insertProduct()
 Insertar producto con categoria y usuario correcto
@@ -205,7 +286,7 @@ prodName (String), description (string), launchPrice (BigDecimal), sendInfo (Str
 Inserta un producto en la BD
 Usuario y categoría creados.
 
-PR-UN-024
+PR-UN-033
 
 ProductService
 insertProduct()
@@ -214,7 +295,7 @@ prodName (String), description (string), launchPrice (BigDecimal), sendInfo (Str
 Excepcion de categoria no existente (InstanceNotFoundException)
 Usuario creado
 
-PR-UN-025
+PR-UN-034
 
 ProductService
 insertProduct()
@@ -223,7 +304,7 @@ prodName (String), description (string), launchPrice (BigDecimal), sendInfo (Str
 Excepcion de usuario no existente (InstanceNotFoundException)
 Categoria creada
 
-PR-UN-026
+PR-UN-035
 
 ProductService
 insertProduct()
@@ -232,7 +313,7 @@ prodName (String), description (string), launchPrice (BigDecimal), sendInfo (Str
 null (producto no creado)
 Usuario y categoria creados.
 
-PR-UN-027
+PR-UN-036
 
 ProductService
 findActiveAuctions()
@@ -241,7 +322,7 @@ keyword (string), catId (Long), startIndex (int), count (int)
 Lista de productos que coinciden con las caracteristicas de la busqueda
 Usuario, categoria y producto creado
 
-PR-UN-028
+PR-UN-037
 
 ProductService
 findActiveAuctions()
@@ -250,7 +331,7 @@ keyword (string), catId (Long), startIndex (int), count (int)
 Excepcion de categoria no existente (InstanceNotFoundException)
 Ninguna
 
-PR-UN-029
+PR-UN-038
 
 ProductService
 listProducts()
@@ -259,7 +340,7 @@ UserProfileId (Long)
 Lista de productos del usuario
 Usuario, categoria, y producto creado
 
-PR-UN-030
+PR-UN-039
 
 ProductService
 listProducts()
@@ -268,7 +349,7 @@ UserProfileId (Long)
 Excepcion de usuario no existente (InstanceNotFoundException)
 Ninguna
 
-PR-UN-031
+PR-UN-040
 
 ProductService
 findByProductId()
@@ -277,7 +358,7 @@ ProductId (Long)
 Excepcion de producto no existente (InstanceNotFoundException)
 Ninguna
 
-PR-UN-032
+PR-UN-041
 
 ProductService
 findByProductId()
@@ -286,7 +367,7 @@ ProductId (Long)
 El producto que se corresponde con el id
 Usuario, categoría y producto creados
 
-PR-UN-033
+PR-UN-042
 
 ProductService
 getAllCategories()
@@ -295,7 +376,7 @@ Ninguna
 Lista de categorías existentes
 categoría creada
 
-PR-UN-034
+PR-UN-043
 
 ProductService
 findCategory()
@@ -304,7 +385,7 @@ CatId (Long)
 La categoría que se corresponde con el id
 categoría creada
 
-PR-UN-035
+PR-UN-044
 
 ProductService
 findCategory()
@@ -313,7 +394,7 @@ CatId (Long)
 Excepcion de categoría no existente (InstanceNotFoundException)
 Ninguna
 
-PR-UN-036
+PR-UN-045
 
 ProductService
 getNumberOfProducts()
@@ -322,7 +403,7 @@ UserProfileId (Long)
 Número de productos del usuario
 Usuario, categoría y producto creado
 
-PR-UN-037
+PR-UN-046
 
 ProductService
 getNumberOfProducts()
@@ -331,7 +412,7 @@ UserProfileId (Long)
 Excepcion de usuario no existente (InstanceNotFoundException)
 Ninguna
 
-PR-UN-038
+PR-UN-047
 
 ProductService
 getNumberOfSearhProducts()
@@ -340,7 +421,7 @@ keywords (string), catId (long)
 Número de productos que coinciden con la busqueda
 Usuario, categoría y producto creado
 
-PR-UN-039
+PR-UN-048
 
 ProductService
 getNumberOfSearhProducts()

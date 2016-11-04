@@ -1,7 +1,6 @@
 package es.udc.pa.pa007.auctionhouse.test.model.userservice;
 
-import static es.udc.pa.pa007.auctionhouse.model.util.GlobalNames.SPRING_CONFIG_FILE;
-import static es.udc.pa.pa007.auctionhouse.test.util.GlobalNames.SPRING_CONFIG_TEST_FILE;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -12,10 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
-
-import org.springframework.test.context.ContextConfiguration;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfile;
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfileDao;

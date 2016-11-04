@@ -40,7 +40,7 @@ public class ProductServiceUnitTest {
 	UserProfileDao userProfileDao;
 	
 	//Insertar producto con categoria y usuario correcto
-	//PR-UN-023
+	//PR-UN-032
 	@Test
 	public void insertProductTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -59,7 +59,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Insertar producto con categoria incorrecta
-	//PR-UN-024
+	//PR-UN-033
 	@Test(expected = InstanceNotFoundException.class)
 	public void insertProductIncorrectCatTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -73,7 +73,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Insertar producto con usuario incorrecto
-	//PR-UN-025
+	//PR-UN-034
 	@Test(expected = InstanceNotFoundException.class)
 	public void insertProductIncorrectOwnerTest() throws InstanceNotFoundException{
 		Long userId = Long.valueOf(1);
@@ -88,7 +88,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Insertar producto con precio negativo
-	//PR-UN-026
+	//PR-UN-035
 	@Test
 	public void insertProductNegativePriceTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -107,7 +107,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Buscar productos con sus distintas variantes
-	//PR-UN-027
+	//PR-UN-036
 	@Test
 	public void findActiveAuctionsTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -152,7 +152,7 @@ public class ProductServiceUnitTest {
 	}
 
 	//Buscar productos categoria invalida
-	//PR-UN-028
+	//PR-UN-037
 	@Test(expected = InstanceNotFoundException.class)
 	public void findActiveAuctionsInvalidCategoryTest() throws InstanceNotFoundException{
 		Long l = Long.valueOf(2);
@@ -164,7 +164,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Listar productos de un usuario
-	//PR-UN-029
+	//PR-UN-038
 	@Test
 	public void listProductsTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -189,7 +189,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Listar productos de un usuario no valido
-	//PR-UN-030
+	//PR-UN-039
 	@Test(expected= InstanceNotFoundException.class)
 	public void listProductsUserInvalidTest() throws InstanceNotFoundException{
 
@@ -202,7 +202,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Buscar un producto invalido
-	//PR-UN-031
+	//PR-UN-040
 	@Test(expected= InstanceNotFoundException.class)
 	public void findByProductIdInvalidTest() throws InstanceNotFoundException{
 
@@ -214,7 +214,7 @@ public class ProductServiceUnitTest {
 	}
 	
 	//Buscar un producto
-	//PR-UN-032
+	//PR-UN-041
 	@Test
 	public void findByProductIdTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -234,7 +234,7 @@ public class ProductServiceUnitTest {
 	}	
 	
 	//Listar las categorias
-	//PR-UN-033
+	//PR-UN-042
 	@Test
 	public void getAllCategoriesTest(){
 		Category cat = new Category("informatica");
@@ -251,7 +251,7 @@ public class ProductServiceUnitTest {
 	
 	
 	//Buscar categoria
-	//PR-UN-034
+	//PR-UN-043
 	@Test
 	public void findCategoryTest() throws InstanceNotFoundException{
 		Category cat = new Category("informatica");
@@ -267,7 +267,7 @@ public class ProductServiceUnitTest {
 	}	
 	
 	//Buscar categoria incorrecta
-	//PR-UN-035
+	//PR-UN-044
 	@Test(expected = InstanceNotFoundException.class)
 	public void findCategoryInvalidTest() throws InstanceNotFoundException{
 
@@ -279,7 +279,7 @@ public class ProductServiceUnitTest {
 	}	
 	
 	//Obtener el numero de productos de un usuario
-	//PR-UN-036
+	//PR-UN-045
 	@Test
 	public void getNumberOfProductsTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -301,7 +301,7 @@ public class ProductServiceUnitTest {
 	}	
 	
 	//Obtener el numero de productos de un usuario incorrecto
-	//PR-UN-037
+	//PR-UN-046
 	@Test(expected = InstanceNotFoundException.class)
 	public void getNumberOfProductsInvalidTest() throws InstanceNotFoundException{
 
@@ -314,7 +314,7 @@ public class ProductServiceUnitTest {
 	}	
 
 	//Obtener el numero de productos de una busqueda
-	//PR-UN-038
+	//PR-UN-047
 	@Test
 	public void getNumberOfSearhProductsTest() throws InstanceNotFoundException{
 		UserProfile user1 = new UserProfile("user1","pass", "jason", "petersen","jason@gmail.com");
@@ -336,7 +336,7 @@ public class ProductServiceUnitTest {
 	}	
 	
 	//Obtener el numero de productos de una busqueda con categoria incorrecta
-	//PR-UN-039
+	//PR-UN-048
 	@Test(expected = InstanceNotFoundException.class)
 	public void getNumberOfSearhProductsInvalidTest() throws InstanceNotFoundException{
 
