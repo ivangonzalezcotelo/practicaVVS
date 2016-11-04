@@ -195,3 +195,156 @@ Saber el numero de categorias existentes
 ninguno
 Lista de categorias (List)
 Categorias guardadas en BD
+
+PR-UN-023
+
+ProductService
+insertProduct()
+Insertar producto con categoria y usuario correcto
+prodName (String), description (string), launchPrice (BigDecimal), sendInfo (String), minsToFinish (int), owner (Long), catId (Long)
+Inserta un producto en la BD
+Usuario y categoría creados.
+
+PR-UN-024
+
+ProductService
+insertProduct()
+Insertar producto con categoria incorrecta y usuario correcto
+prodName (String), description (string), launchPrice (BigDecimal), sendInfo (String), minsToFinish (int), owner (Long), catId (Long)
+Excepcion de categoria no existente (InstanceNotFoundException)
+Usuario creado
+
+PR-UN-025
+
+ProductService
+insertProduct()
+Insertar producto con usuario incorrecto
+prodName (String), description (string), launchPrice (BigDecimal), sendInfo (String), minsToFinish (int), owner (Long), catId (Long)
+Excepcion de usuario no existente (InstanceNotFoundException)
+Categoria creada
+
+PR-UN-026
+
+ProductService
+insertProduct()
+Insertar producto con precio negativo
+prodName (String), description (string), launchPrice (BigDecimal), sendInfo (String), minsToFinish (int), owner (Long), catId (Long)
+null (producto no creado)
+Usuario y categoria creados.
+
+PR-UN-027
+
+ProductService
+findActiveAuctions()
+Buscar productos con sus distintas variantes
+keyword (string), catId (Long), startIndex (int), count (int)
+Lista de productos que coinciden con las caracteristicas de la busqueda
+Usuario, categoria y producto creado
+
+PR-UN-028
+
+ProductService
+findActiveAuctions()
+Buscar productos con categoria invalida
+keyword (string), catId (Long), startIndex (int), count (int)
+Excepcion de categoria no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-029
+
+ProductService
+listProducts()
+Listar productos de un usuario
+UserProfileId (Long)
+Lista de productos del usuario
+Usuario, categoria, y producto creado
+
+PR-UN-030
+
+ProductService
+listProducts()
+Listar productos de un usuario no valido
+UserProfileId (Long)
+Excepcion de usuario no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-031
+
+ProductService
+findByProductId()
+Buscar un producto no existente
+ProductId (Long)
+Excepcion de producto no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-032
+
+ProductService
+findByProductId()
+Buscar un producto
+ProductId (Long)
+El producto que se corresponde con el id
+Usuario, categoría y producto creados
+
+PR-UN-033
+
+ProductService
+getAllCategories()
+Lista las categorías existentes
+Ninguna
+Lista de categorías existentes
+categoría creada
+
+PR-UN-034
+
+ProductService
+findCategory()
+Busca una categoría
+CatId (Long)
+La categoría que se corresponde con el id
+categoría creada
+
+PR-UN-035
+
+ProductService
+findCategory()
+Busca una categoría no existente
+CatId (Long)
+Excepcion de categoría no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-036
+
+ProductService
+getNumberOfProducts()
+Obtener el número de productos de un usuario
+UserProfileId (Long)
+Número de productos del usuario
+Usuario, categoría y producto creado
+
+PR-UN-037
+
+ProductService
+getNumberOfProducts()
+Obtener el número de productos de un usuario inexistente
+UserProfileId (Long)
+Excepcion de usuario no existente (InstanceNotFoundException)
+Ninguna
+
+PR-UN-038
+
+ProductService
+getNumberOfSearhProducts()
+Obtener el número de productos de una busqueda
+keywords (string), catId (long)
+Número de productos que coinciden con la busqueda
+Usuario, categoría y producto creado
+
+PR-UN-039
+
+ProductService
+getNumberOfSearhProducts()
+Obtener el número de productos de una busqueda con categoria inexistente
+keywords (string), catId (long)
+Excepcion de categoria no existente (InstanceNotFoundException)
+Ninguna
