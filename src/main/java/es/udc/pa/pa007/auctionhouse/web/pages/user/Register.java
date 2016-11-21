@@ -81,7 +81,7 @@ public class Register {
 						new UserProfileDetails(firstName, lastName, email));
 				userProfileId = userProfile.getUserProfileId();
 			} catch (DuplicateInstanceException e) {
-				registrationForm.recordError(loginNameField, messages.get("error-loginNameAlreadyExists"));
+				registrationForm.recordError(loginNameField, messages.get("error-loginNameAlreadyExists"));	
 			}
 
 		}

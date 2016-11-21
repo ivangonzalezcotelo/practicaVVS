@@ -20,56 +20,86 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 import es.udc.pa.pa007.auctionhouse.model.product.Product;
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfile;
 
+/**
+ * Clase Bid.
+ *
+ */
 @Entity
 public class Bid {
+
 	@NonVisual
 	private Long bidId;
+
 	private Product productId;
+
 	private UserProfile userId;
+
 	private BigDecimal currentValue;
+
 	private BigDecimal maxBid;
+
 	private Calendar bidDate;
+
 	private UserProfile actualWin;
-	
-	public Bid (){
+
+	/**
+	 * Constructor.
+	 */
+	public Bid() {
 	}
-	
-	public Bid(Product prodId, UserProfile usrId, BigDecimal currentValue,
-			   BigDecimal maxBid, Calendar bidDate, UserProfile actualWin) {
+
+	/**
+	 * Constructor a partir de datos.
+	 * 
+	 * @param prodId
+	 *            el producto sobre el que se puja
+	 * @param usrId
+	 *            el usuario que hace la puja
+	 * @param currentValue
+	 *            el valor actual
+	 * @param maxBid
+	 *            el valor de la puja maxima
+	 * @param bidDate
+	 *            la fecha de la puja
+	 * @param actualWin
+	 *            el ganador actual
+	 */
+	public Bid(Product prodId, UserProfile usrId, BigDecimal currentValue, BigDecimal maxBid, Calendar bidDate,
+			UserProfile actualWin) {
 		/**
 		 * NOTE: "bidId" *must* be left as "null" since its value is
 		 * automatically generated.
-		 */		
+		 */
 		this.productId = prodId;
-		this.userId  = usrId;
+		this.userId = usrId;
 		this.currentValue = currentValue;
 		this.maxBid = maxBid;
 		this.bidDate = bidDate;
 		this.actualWin = actualWin;
-		
+
 	}
-	
+
 	@Column(name = "bidId")
-	@SequenceGenerator(      // It only takes effect for
-	name = "BidIdGenerator", // databases providing identifier
-	sequenceName = "BidSeq") // generators.
+	@SequenceGenerator( // It only takes effect for
+			name = "BidIdGenerator", // databases providing identifier
+			sequenceName = "BidSeq") // generators.
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "BidIdGenerator")
-	public Long getBidId(){
+	public Long getBidId() {
 		return bidId;
 	}
-	
+
 	public void setBidId(long bidId) {
 		this.bidId = bidId;
 	}
-	
-	@ManyToOne(optional=false, fetch=FetchType.LAZY)
-	@JoinColumn(name="productId")
-	public Product getProductId(){
-		return productId;			
+
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "productId")
+	public Product getProductId() {
+		return productId;
 	}
-	
-	public void setProductId(Product prodId){
+
+	public void setProductId(Product prodId) {
 		this.productId = prodId;
 	}
 
@@ -89,7 +119,7 @@ public class Bid {
 		this.maxBid = maxBid;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)	
+	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getBidDate() {
 		return bidDate;
 	}
@@ -98,8 +128,8 @@ public class Bid {
 		this.bidDate = bidDate;
 	}
 
-	@ManyToOne(optional=false, fetch=FetchType.LAZY)
-	@JoinColumn(name="actualWinner")
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "actualWinner")
 	public UserProfile getActualWin() {
 		return actualWin;
 	}
@@ -108,8 +138,8 @@ public class Bid {
 		this.actualWin = actualWin;
 	}
 
-	@ManyToOne(optional=false, fetch=FetchType.LAZY)
-	@JoinColumn(name="userId")
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
 	public UserProfile getUserId() {
 		return userId;
 	}
