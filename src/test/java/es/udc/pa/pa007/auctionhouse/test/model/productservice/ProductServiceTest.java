@@ -45,6 +45,8 @@ public class ProductServiceTest {
 	@Autowired
 	private CategoryDao categoryDao;
 	
+	/* PR-IN-007 */
+	
 	@Test
 	public void testInsertProductAndListProducts() 
 			throws DuplicateInstanceException, InstanceNotFoundException{
@@ -65,6 +67,8 @@ public class ProductServiceTest {
 		assertEquals(owner.getLoginName(), products.get(0).getOwner().getLoginName());
 	}
 	
+	/* PR-IN-008 */
+	
 	@Test
 	public void testNoListProducts()
 			throws DuplicateInstanceException, InstanceNotFoundException{
@@ -77,6 +81,8 @@ public class ProductServiceTest {
 		List <Product> products= productServices.listProducts(owner.getUserProfileId(), 0, 10) ;	
 		assertEquals( 0 , products.size());
 	}
+	
+	/* PR-IN-009 */
 	
 	@Test
 	public void testInsertBadProduct()
@@ -95,6 +101,8 @@ public class ProductServiceTest {
 		
 		assertEquals( 0 , products.size());
 	}
+	
+	/* PR-IN-010 */
 	
 	@Test
 	public void testFindAllActiveAuctions()

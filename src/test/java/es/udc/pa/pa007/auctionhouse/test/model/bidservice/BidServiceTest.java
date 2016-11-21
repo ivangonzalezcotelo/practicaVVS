@@ -44,6 +44,8 @@ public class BidServiceTest {
 	@Autowired
 	private CategoryDao categoryDao;
 	
+	/*PR-IN-001 */
+	
 	@Test
 	public void testNoListBids() 
 			throws DuplicateInstanceException, InstanceNotFoundException{
@@ -54,6 +56,8 @@ public class BidServiceTest {
 		
 		assertEquals (0, bids.size());
 	}
+	
+	/*PR-IN-002 */
 	
 	@Test
 	public void testFirstMakeBid() 
@@ -83,6 +87,8 @@ public class BidServiceTest {
 		assertEquals( search.getWinnerBid().getBidId(), bids.get(0).getBidId());
 	};
 	
+	/*PR-IN-003*/
+	
 	@Test(expected = InvalidBidException.class)
 	public void testOwnerMakeBidOwner() 
 			throws InvalidBidException, DuplicateInstanceException, InstanceNotFoundException{
@@ -97,6 +103,8 @@ public class BidServiceTest {
 		
 		bidService.makeBid(owner.getUserProfileId(), p.getProdId(), new BigDecimal(20));
 	}
+	
+	/*PR-IN-004*/
 	
 	@Test(expected = InvalidBidException.class)
 	public void testMakeBidInsuficient() 
@@ -114,6 +122,8 @@ public class BidServiceTest {
 				"Informacion", 4, owner.getUserProfileId(), cat.getCatId());
 		bidService.makeBid(user.getUserProfileId(), p.getProdId(), new BigDecimal(5.5));
 	};
+	
+	/*PR-IN-005*/
 	
 	@Test
 	public void testTwoMakeBids() 
@@ -146,6 +156,8 @@ public class BidServiceTest {
 		assertEquals(1, bidsB.size());
 		assertEquals(1, bidsA.size());
 	}
+	
+	/*PR-IN-006*/
 	
 	@Test
 	public void testTwoMakeBids2() 
