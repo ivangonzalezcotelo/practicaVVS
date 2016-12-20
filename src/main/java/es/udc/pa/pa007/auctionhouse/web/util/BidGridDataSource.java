@@ -11,53 +11,52 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 public class BidGridDataSource implements GridDataSource {
 
-	private BidService bidService; 
+	private BidService bidService;
 	private Long userId;
 	private List<Bid> bids;
 	private int startIndex;
 	private boolean userNotFound;
 
-	public BidGridDataSource(BidService bidService,Long userId) {
-		
+	public BidGridDataSource(BidService bidService, Long userId) {
+
 		this.bidService = bidService;
 		this.userId = userId;
 
 	}
 
-    public int getAvailableRows() {
-    	    	
-    	try {		
+	public int getAvailableRows() {
+
+		try {
 			return bidService.getNumberOfBidsByUserId(userId);
 		} catch (InstanceNotFoundException e) {
 			userNotFound = true;
 			return 0;
 		}
-        
-    }
 
-    public Class<Bid> getRowType() {
-        return Bid.class;
-    }
+	}
 
-    public Object getRowValue(int index) {
-        return bids.get(index-this.startIndex);
-    }
+	public Class<Bid> getRowType() {
+		return Bid.class;
+	}
 
-    public void prepare(int startIndex, int endIndex,
-    	List<SortConstraint> sortConstraints) {
+	public Object getRowValue(int index) {
+		return bids.get(index - this.startIndex);
+	}
 
-        try {
-        	
-        	bids = bidService.listBids(userId, startIndex, endIndex-startIndex+1);
-	        this.startIndex = startIndex;
+	public void prepare(int startIndex, int endIndex, List<SortConstraint> sortConstraints) {
+
+		try {
+
+			bids = bidService.listBids(userId, startIndex, endIndex - startIndex + 1);
+			this.startIndex = startIndex;
 
 		} catch (InstanceNotFoundException e) {
 		}
 
-    }
+	}
 
-    public boolean getUserNotFound() {
-    	return userNotFound;
-    }
+	public boolean getUserNotFound() {
+		return userNotFound;
+	}
 
 }

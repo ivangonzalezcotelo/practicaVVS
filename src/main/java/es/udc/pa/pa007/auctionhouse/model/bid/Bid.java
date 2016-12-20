@@ -27,19 +27,40 @@ import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfile;
 @Entity
 public class Bid {
 
+	/**
+	 * The bidId.
+	 */
 	@NonVisual
 	private Long bidId;
 
+	/**
+	 * The Product.
+	 */
 	private Product productId;
 
+	/**
+	 * The UserProfile.
+	 */
 	private UserProfile userId;
 
+	/**
+	 * The currentValue.
+	 */
 	private BigDecimal currentValue;
 
+	/**
+	 * The maxBid.
+	 */
 	private BigDecimal maxBid;
 
+	/**
+	 * The Date.
+	 */
 	private Calendar bidDate;
 
+	/**
+	 * The actualWinner.
+	 */
 	private UserProfile actualWin;
 
 	/**
@@ -79,8 +100,11 @@ public class Bid {
 
 	}
 
+	/**
+	 * @return the BidId.
+	 */
 	@Column(name = "bidId")
-	@SequenceGenerator( // It only takes effect for
+	@SequenceGenerator(// It only takes effect for
 			name = "BidIdGenerator", // databases providing identifier
 			sequenceName = "BidSeq") // generators.
 	@Id
@@ -89,61 +113,100 @@ public class Bid {
 		return bidId;
 	}
 
+	/**
+	 * @param bidId The bidId.
+	 */
 	public void setBidId(long bidId) {
 		this.bidId = bidId;
 	}
 
+	/**
+	 * @return the Product.
+	 */
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "productId")
 	public Product getProductId() {
 		return productId;
 	}
 
+	/**
+	 * @param prodId The Product.
+	 */
 	public void setProductId(Product prodId) {
 		this.productId = prodId;
 	}
 
+	/**
+	 * @return The currentValue. 
+	 */
 	public BigDecimal getCurrentValue() {
 		return currentValue;
 	}
 
+	/**
+	 * @param currentValue The currentValue.
+	 */
 	public void setCurrentValue(BigDecimal currentValue) {
 		this.currentValue = currentValue;
 	}
 
+	/**
+	 * @return The MaxBid.
+	 */
 	public BigDecimal getMaxBid() {
 		return maxBid;
 	}
 
+	/**
+	 * @param maxBid The MaxBid.
+	 */
 	public void setMaxBid(BigDecimal maxBid) {
 		this.maxBid = maxBid;
 	}
 
+	/**
+	 * @return The BidDate.
+	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getBidDate() {
 		return bidDate;
 	}
 
+	/**
+	 * @param bidDate The BidDate.
+	 */
 	public void setBidDate(Calendar bidDate) {
 		this.bidDate = bidDate;
 	}
 
+	/**
+	 * @return The ActualWinner.
+	 */
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "actualWinner")
 	public UserProfile getActualWin() {
 		return actualWin;
 	}
 
+	/**
+	 * @param actualWin The ActualWinner.
+	 */
 	public void setActualWin(UserProfile actualWin) {
 		this.actualWin = actualWin;
 	}
 
+	/**
+	 * @return The UserProfile.
+	 */
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
 	public UserProfile getUserId() {
 		return userId;
 	}
 
+	/**
+	 * @param usrId The UserProfile.
+	 */
 	public void setUserId(UserProfile usrId) {
 		this.userId = usrId;
 	}

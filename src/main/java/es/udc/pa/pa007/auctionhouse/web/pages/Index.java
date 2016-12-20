@@ -22,69 +22,78 @@ import es.udc.pa.pa007.auctionhouse.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa007.auctionhouse.web.util.CategoryEncoder;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * Index.
+ *
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class Index {
 	
+	/**
+	 * The index.
+	 */
+	private final int index = 5;
+
 	@InjectPage
 	private ProductsResults productsResults;
-	
+
 	@Property
 	private String productName;
-	
+
 	@Component
-    private Form searchForm;
-	
+	private Form searchForm;
+
 	@Inject
 	private ProductService productService;
 
 	@Inject
 	private Messages messages;
-		
+
 	@Property
 	private SelectModel categorysModel;
-	
+
 	@Property
 	private Category category;
-	
+
 	@Property
 	private Long catOption;
-	
-    @Inject
-    private Locale locale;
-	
+
+	@Inject
+	private Locale locale;
+
 	@Inject
 	private SelectModelFactory selectModelFactory;
-	
-	List<String> onProvideCompletionsFromProductName(String partial) throws InstanceNotFoundException {
-        List<String> matches = new ArrayList<String>();
-        partial = partial.toUpperCase();
-        for (Product productName : productService.findActiveAuctions(partial, null, 0, 5)) {
-            matches.add(productName.getProdName());
-        }
 
-        return matches;
-    }
-	
+	List<String> onProvideCompletionsFromProductName(String partial) throws InstanceNotFoundException {
+		List<String> matches = new ArrayList<String>();
+		partial = partial.toUpperCase();
+		for (Product productName : productService.findActiveAuctions(partial, null, 0, index)) {
+			matches.add(productName.getProdName());
+		}
+
+		return matches;
+	}
+
 	public CategoryEncoder getCategoryEncoder() {
 		List<Category> categorys = productService.getAllCategories();
 		categorysModel = selectModelFactory.create(categorys, "catName");
 		return new CategoryEncoder(categorysModel);
 	}
-	
+
 	void onValidateFromSearchForm() {
-        if (productName == null){
-        	productName = new String("");
-        }
-        
-        if (category == null){
+		if (productName == null) {
+			productName = new String("");
+		}
+
+		if (category == null) {
 			catOption = null;
-		} else{
+		} else {
 			catOption = category.getCatId();
 		}
-   }
-	
-	Object onSuccess(){
+	}
+
+	Object onSuccess() {
 		return productsResults.set(productName, catOption);
 	}
-	
+
 }

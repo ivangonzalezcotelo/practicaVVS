@@ -23,79 +23,79 @@ import es.udc.pa.pa007.auctionhouse.web.util.SearchProductGridDataSource;
 
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class ProductsResults {
-	
+
 	@ActivationRequestParameter(value = "prodName")
 	private String prodName;
-	
+
 	@Property
 	@ActivationRequestParameter(value = "catId")
 	private Long catId;
-	
+
 	private Product product;
-	
+
 	@Inject
 	private Messages messages;
-	
+
 	@Inject
-    private PageRenderLinkSource pageRenderLinkSource;
-	
+	private PageRenderLinkSource pageRenderLinkSource;
+
 	@Inject
 	private ProductService productService;
-	
+
 	@Property
 	private SearchProductGridDataSource source;
-	
+
 	@InjectComponent
-    private Grid grid;
-	
+	private Grid grid;
+
 	@Inject
-    private BeanModelSource beanModelSource;
-	
+	private BeanModelSource beanModelSource;
+
 	@Property
-    private BeanModel<Product> myModel;
-	
+	private BeanModel<Product> myModel;
+
 	@Inject
 	private Locale locale;
-	
+
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
 		formatter.setMinimumFractionDigits(2);
 		return formatter;
 	}
-	
+
 	public Link set(String prodName, Long catId) {
 		this.prodName = prodName;
 		this.catId = catId;
-		
-        return pageRenderLinkSource.createPageRenderLink(this.getClass());
-    }
-	
-	void onActivate(){
+
+		return pageRenderLinkSource.createPageRenderLink(this.getClass());
+	}
+
+	void onActivate() {
 		this.source = new SearchProductGridDataSource(productService, catId, prodName);
 		myModel = beanModelSource.createDisplayModel(Product.class, messages);
-        myModel.get("actualPrice").sortable(false);
-        myModel.get("prodName").sortable(false);
-        myModel.get("launchPrice").sortable(false);
-        myModel.get("timeRemaining").sortable(false);
+		myModel.get("actualPrice").sortable(false);
+		myModel.get("prodName").sortable(false);
+		myModel.get("launchPrice").sortable(false);
+		myModel.get("timeRemaining").sortable(false);
 	}
-	/*	
-	void setupRender() {
-		myModel = beanModelSource.createDisplayModel(Product.class, messages);
-        myModel.get("actualPrice").sortable(false);
-        myModel.get("prodName").sortable(false);
-        myModel.get("launchPrice").sortable(false);
-        myModel.get("timeRemaining").sortable(false);
-   }
-	*/
-	public Product getProduct(){
+
+	/*
+	 * void setupRender() { myModel =
+	 * beanModelSource.createDisplayModel(Product.class, messages);
+	 * myModel.get("actualPrice").sortable(false);
+	 * myModel.get("prodName").sortable(false);
+	 * myModel.get("launchPrice").sortable(false);
+	 * myModel.get("timeRemaining").sortable(false); }
+	 */
+	public Product getProduct() {
 		return this.product;
 	}
-	
+
 	public void setProduct(Product product) {
 		this.product = product;
-		if (product.getWinnerBid()==null){
-			product.setActualPrice(product.getLaunchPrice()); 
+		if (product.getWinnerBid() == null) {
+			product.setActualPrice(product.getLaunchPrice());
 		}
 	}
 }

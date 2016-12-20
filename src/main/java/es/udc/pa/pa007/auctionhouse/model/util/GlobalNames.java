@@ -1,10 +1,25 @@
 package es.udc.pa.pa007.auctionhouse.model.util;
 
-public class GlobalNames {
+/**
+ * Global Names.
+ *
+ */
+public final class GlobalNames {
 
-    public static final String SPRING_CONFIG_FILE =
-        "classpath:/spring-config.xml";
+	/**
+	 * The Spring_config_file.
+	 */
+	public static final String SPRING_CONFIG_FILE = "classpath:/spring-config.xml";
+	
+	/**
+	 * The pagination. 
+	 */
+	public static final int PAGINATION = 10;
 
-    private GlobalNames () {}
+	/**
+	 * Instance.
+	 */
+	private GlobalNames() {
+	}
 
 }

@@ -8,9 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.BatchSize;
+import static es.udc.pa.pa007.auctionhouse.model.util.GlobalNames.PAGINATION;
 
+/**
+ * UserProfile.
+ *
+ */
 @Entity
-@BatchSize(size=10)
+@BatchSize(size = PAGINATION)
 public class UserProfile {
 
 	private Long userProfileId;
@@ -23,8 +28,7 @@ public class UserProfile {
 	public UserProfile() {
 	}
 
-	public UserProfile(String loginName, String encryptedPassword,
-			String firstName, String lastName, String email) {
+	public UserProfile(String loginName, String encryptedPassword, String firstName, String lastName, String email) {
 
 		/**
 		 * NOTE: "userProfileId" *must* be left as "null" since its value is
@@ -39,9 +43,9 @@ public class UserProfile {
 	}
 
 	@Column(name = "usrId")
-	@SequenceGenerator( // It only takes effect for
-	name = "UserProfileIdGenerator", // databases providing identifier
-	sequenceName = "UserProfileSeq")
+	@SequenceGenerator(// It only takes effect for
+			name = "UserProfileIdGenerator", // databases providing identifier
+			sequenceName = "UserProfileSeq")
 	// generators.
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "UserProfileIdGenerator")
@@ -96,10 +100,8 @@ public class UserProfile {
 
 	@Override
 	public String toString() {
-		return "UserProfile [userProfileId=" + userProfileId + ", loginName="
-				+ loginName + ", encryptedPassword=" + encryptedPassword
-				+ ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + "]";
+		return "UserProfile [userProfileId=" + userProfileId + ", loginName=" + loginName + ", encryptedPassword="
+				+ encryptedPassword + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
 }

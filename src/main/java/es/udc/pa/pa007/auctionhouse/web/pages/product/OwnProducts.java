@@ -25,32 +25,32 @@ public class OwnProducts {
 
 	@Property
 	private String winnerBid;
-	
+
 	@Property
 	private BigDecimal actualPrice;
-	
+
 	@Property
 	private String timeRemaining;
 
 	@Inject
 	private Messages messages;
-	
-	@SessionState(create=false)
-    private UserSession userSession;
+
+	@SessionState(create = false)
+	private UserSession userSession;
 
 	@Inject
 	private ProductService productService;
-	
+
 	@Inject
 	private Locale locale;
-	
+
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
 		formatter.setMinimumFractionDigits(2);
 		return formatter;
 	}
-	
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
@@ -65,19 +65,18 @@ public class OwnProducts {
 
 	public void setProduct(Product product) {
 		this.product = product;
-		if (product.getWinnerBid()!=null){
+		if (product.getWinnerBid() != null) {
 			this.winnerBid = product.getWinnerBid().getActualWin().getLoginName();
 			this.actualPrice = product.getActualPrice();
-		}else{
+		} else {
 			this.winnerBid = messages.get("noBids");
 			this.actualPrice = product.getLaunchPrice();
 		}
-		if (product.getTimeRemaining()<0){
-			this.timeRemaining = messages.get("finalized");	
-		}else{
+		if (product.getTimeRemaining() < 0) {
+			this.timeRemaining = messages.get("finalized");
+		} else {
 			this.timeRemaining = String.valueOf(product.getTimeRemaining());
 		}
-			
 
 	}
 
@@ -85,17 +84,16 @@ public class OwnProducts {
 		return ROWS_PER_PAGE;
 	}
 
-	void onActivate(){
+	void onActivate() {
 
 		this.userId = userSession.getUserProfileId();
 
-		productGridDataSource = new ProductGridDataSource(productService,
-			userId);
+		productGridDataSource = new ProductGridDataSource(productService, userId);
 
 	}
 
 	Object[] onPassivate() {
-		return new Object[] {userId};
+		return new Object[] { userId };
 	}
 
 }

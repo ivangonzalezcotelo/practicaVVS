@@ -24,29 +24,29 @@ public class OwnBids {
 
 	@Property
 	private String prodName;
-	
+
 	@Property
 	private String actualWin;
-	
+
 	@Inject
 	private Messages messages;
-	
-	@SessionState(create=false)
-    private UserSession userSession;
+
+	@SessionState(create = false)
+	private UserSession userSession;
 
 	@Inject
 	private BidService bidService;
-	
+
 	@Inject
 	private Locale locale;
-	
+
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
 		formatter.setMinimumFractionDigits(2);
 		return formatter;
 	}
-	
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
@@ -61,8 +61,8 @@ public class OwnBids {
 
 	public void setBid(Bid bid) {
 		this.bid = bid;
-		if (bid.getActualWin()!=null){
-			this.actualWin = bid.getActualWin().getLoginName(); 
+		if (bid.getActualWin() != null) {
+			this.actualWin = bid.getActualWin().getLoginName();
 		} else {
 			this.actualWin = bid.getUserId().getLoginName();
 		}
@@ -72,13 +72,13 @@ public class OwnBids {
 		return ROWS_PER_PAGE;
 	}
 
-	void onActivate(){
+	void onActivate() {
 		this.userId = userSession.getUserProfileId();
 		bidGridDataSource = new BidGridDataSource(bidService, userId);
 	}
 
 	Object[] onPassivate() {
-		return new Object[] {userId};
+		return new Object[] { userId };
 	}
 
 }

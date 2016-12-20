@@ -6,29 +6,34 @@ import org.springframework.stereotype.Repository;
 
 import es.udc.pojo.modelutil.dao.GenericDaoHibernate;
 
+/**
+ * Implementation.
+ *
+ */
 @Repository("BidDao")
-public class BidDaoHibernate extends GenericDaoHibernate<Bid, Long> implements BidDao{
+public class BidDaoHibernate extends GenericDaoHibernate<Bid, Long> implements BidDao {
 
-	@SuppressWarnings("unchecked")	
+	/* (non-Javadoc)
+	 * @see es.udc.pa.pa007.auctionhouse.model.bid.BidDao#findByUser(java.lang.Long, int, int)
+	 */
+	@SuppressWarnings("unchecked")
 	public List<Bid> findByUser(Long userId, int startIndex, int count) {
-		
-		return getSession().createQuery(
-			"SELECT u FROM Bid u WHERE u.userId.userProfileId = :userId" +
-			" ORDER BY u.bidDate DESC").
-			setParameter("userId", userId).
-			setFirstResult(startIndex).
-			setMaxResults(count).list();
-	}	
-	
+
+		return getSession()
+				.createQuery("SELECT u FROM Bid u WHERE u.userId.userProfileId = :userId" + " ORDER BY u.bidDate DESC")
+				.setParameter("userId", userId).setFirstResult(startIndex).setMaxResults(count).list();
+	}
+
+	/* (non-Javadoc)
+	 * @see es.udc.pa.pa007.auctionhouse.model.bid.BidDao#getNumberOfBidsByUserId(java.lang.Long)
+	 */
 	public int getNumberOfBidsByUserId(Long userId) {
-		
-		long numberOfBids = (Long) getSession().createQuery(
-                "SELECT COUNT(o) FROM Bid o WHERE " +
-                "o.userId.userProfileId = :userId").
-                setParameter("userId", userId).
-                uniqueResult();
 
-        return (int) numberOfBids;
+		long numberOfBids = (Long) getSession()
+				.createQuery("SELECT COUNT(o) FROM Bid o WHERE " + "o.userId.userProfileId = :userId")
+				.setParameter("userId", userId).uniqueResult();
 
-	}	
+		return (int) numberOfBids;
+
+	}
 }
