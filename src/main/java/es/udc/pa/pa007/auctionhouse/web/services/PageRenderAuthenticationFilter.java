@@ -10,12 +10,30 @@ import org.apache.tapestry5.services.PageRenderRequestFilter;
 import org.apache.tapestry5.services.PageRenderRequestHandler;
 import org.apache.tapestry5.services.PageRenderRequestParameters;
 
+/**
+ * PageRenderAuthenticationFilter.
+ *
+ */
 public class PageRenderAuthenticationFilter implements PageRenderRequestFilter {
 
+    /**
+     * The ApplicationStateManager.
+     */
     private ApplicationStateManager applicationStateManager;
+    /**
+     * The ComponentSource.
+     */
     private ComponentSource componentSource;
+    /**
+     * The locator.
+     */
     private MetaDataLocator locator;
 
+    /**
+     * @param applicationStateManager the ApplicationStateManager.
+     * @param componentSource the componentSource.
+     * @param locator the locator.
+     */
     public PageRenderAuthenticationFilter(
             ApplicationStateManager applicationStateManager,
             ComponentSource componentSource, MetaDataLocator locator) {
@@ -26,6 +44,9 @@ public class PageRenderAuthenticationFilter implements PageRenderRequestFilter {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void handle(PageRenderRequestParameters parameters,
             PageRenderRequestHandler handler) throws IOException {
 

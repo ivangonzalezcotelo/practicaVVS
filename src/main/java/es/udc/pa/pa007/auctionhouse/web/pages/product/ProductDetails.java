@@ -17,45 +17,88 @@ import es.udc.pa.pa007.auctionhouse.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * ProductDetails.
+ *
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class ProductDetails {
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The Product.
+	 */
 	@Property
 	private Product product;
 
+	/**
+	 * The product Id.
+	 */
 	@Property
 	private Long productId;
 
+	/**
+	 * The remaining time.
+	 */
 	@Property
 	private String remainingTime;
 
+	/**
+	 * The owner.
+	 */
 	@Property
 	private String owner;
 
+	/**
+	 * The category.
+	 */
 	@Property
 	private String category;
 
+	/**
+	 * The login.
+	 */
 	@Property
 	private int login;
 
+	/**
+	 * The current winner.
+	 */
 	@Property
 	private String currentWinner;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The PageRenderLinkSource.
+	 */
 	@Inject
 	private PageRenderLinkSource pageRenderLinkSource;
 
+	/**
+	 * The ProductService.
+	 */
 	@Inject
 	private ProductService productService;
 
+	/**
+	 * The Locale.
+	 */
 	@Inject
 	private Locale locale;
 
+	/**
+	 * @return the Format.
+	 */
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
@@ -63,11 +106,18 @@ public class ProductDetails {
 		return formatter;
 	}
 
-	Object[] onPassivate() {
+	/**
+	 * @return the Object.
+	 */
+	public Object[] onPassivate() {
 		return new Object[] { productId };
 	}
 
-	void onActivate(Long productId) {
+	/**
+	 * @param productId
+	 *            the product Id.
+	 */
+	public void onActivate(Long productId) {
 		this.productId = productId;
 		try {
 			product = productService.findByProductId(productId);

@@ -21,42 +21,82 @@ import es.udc.pa.pa007.auctionhouse.web.services.AuthenticationPolicy;
 import es.udc.pa.pa007.auctionhouse.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa007.auctionhouse.web.util.SearchProductGridDataSource;
 
+/**
+ * ProductResults.
+ *
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class ProductsResults {
 
+	/**
+	 * The product name.
+	 */
 	@ActivationRequestParameter(value = "prodName")
 	private String prodName;
 
+	/**
+	 * The category Id.
+	 */
 	@Property
 	@ActivationRequestParameter(value = "catId")
 	private Long catId;
 
+	/**
+	 * The Product.
+	 */
 	private Product product;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The PageRenderLinkSource.
+	 */
 	@Inject
 	private PageRenderLinkSource pageRenderLinkSource;
 
+	/**
+	 * The ProductService.
+	 */
 	@Inject
 	private ProductService productService;
 
+	/**
+	 * The source.
+	 */
 	@Property
 	private SearchProductGridDataSource source;
 
+	/**
+	 * The Grid.
+	 */
 	@InjectComponent
 	private Grid grid;
 
+	/**
+	 * The BeanModelSource.
+	 */
 	@Inject
 	private BeanModelSource beanModelSource;
 
+	/**
+	 * The myModel.
+	 */
 	@Property
 	private BeanModel<Product> myModel;
 
+	/**
+	 * The Locale.
+	 */
 	@Inject
 	private Locale locale;
 
+	/**
+	 * @return the Format.
+	 */
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
@@ -64,6 +104,13 @@ public class ProductsResults {
 		return formatter;
 	}
 
+	/**
+	 * @param prodName
+	 *            the product name.
+	 * @param catId
+	 *            the category Id.
+	 * @return the Link.
+	 */
 	public Link set(String prodName, Long catId) {
 		this.prodName = prodName;
 		this.catId = catId;
@@ -71,7 +118,10 @@ public class ProductsResults {
 		return pageRenderLinkSource.createPageRenderLink(this.getClass());
 	}
 
-	void onActivate() {
+	/**
+	 * The onActivate.
+	 */
+	public void onActivate() {
 		this.source = new SearchProductGridDataSource(productService, catId, prodName);
 		myModel = beanModelSource.createDisplayModel(Product.class, messages);
 		myModel.get("actualPrice").sortable(false);
@@ -88,10 +138,17 @@ public class ProductsResults {
 	 * myModel.get("launchPrice").sortable(false);
 	 * myModel.get("timeRemaining").sortable(false); }
 	 */
+	/**
+	 * @return the Product.
+	 */
 	public Product getProduct() {
 		return this.product;
 	}
 
+	/**
+	 * @param product
+	 *            the product
+	 */
 	public void setProduct(Product product) {
 		this.product = product;
 		if (product.getWinnerBid() == null) {

@@ -17,34 +17,68 @@ import es.udc.pa.pa007.auctionhouse.web.util.CookiesManager;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * ChangePassword.
+ *
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 public class ChangePassword {
 
+	/**
+	 * The old password.
+	 */
 	@Property
 	private String oldPassword;
 
+	/**
+	 * The new password.
+	 */
 	@Property
 	private String newPassword;
 
+	/**
+	 * The retype new password.
+	 */
 	@Property
 	private String retypeNewPassword;
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The change password Form.
+	 */
 	@Component
 	private Form changePasswordForm;
 
+	/**
+	 * The Cookies.
+	 */
 	@Inject
 	private Cookies cookies;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The UserService.
+	 */
 	@Inject
 	private UserService userService;
 
-	void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
+	/**
+	 * The onValidateFromChangePasswordForm.
+	 * 
+	 * @throws InstanceNotFoundException
+	 *             if userProfile is invalid.
+	 */
+	public void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
 
 		if (!changePasswordForm.isValid()) {
 			return;
@@ -64,7 +98,10 @@ public class ChangePassword {
 
 	}
 
-	Object onSuccess() {
+	/**
+	 * @return the Index.
+	 */
+	public Object onSuccess() {
 
 		CookiesManager.removeCookies(cookies);
 		return Index.class;

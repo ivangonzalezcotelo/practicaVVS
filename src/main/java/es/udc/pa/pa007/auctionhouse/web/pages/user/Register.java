@@ -19,54 +19,93 @@ import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 
 /**
- * Register controller
+ * Register.
  *
  */
 @AuthenticationPolicy(AuthenticationPolicyType.NON_AUTHENTICATED_USERS)
 public class Register {
 
+	/**
+	 * The login name.
+	 */
 	@Property
 	private String loginName;
 
+	/**
+	 * The password.
+	 */
 	@Property
 	private String password;
 
+	/**
+	 * The retype password.
+	 */
 	@Property
 	private String retypePassword;
 
+	/**
+	 * The first name.
+	 */
 	@Property
 	private String firstName;
 
+	/**
+	 * The last name.
+	 */
 	@Property
 	private String lastName;
 
+	/**
+	 * The email.
+	 */
 	@Property
 	private String email;
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The UserService.
+	 */
 	@Inject
 	private UserService userService;
 
+	/**
+	 * The registrationForm.
+	 */
 	@Component
 	private Form registrationForm;
 
+	/**
+	 * The login name TextField.
+	 */
 	@Component(id = "loginName")
 	private TextField loginNameField;
 
+	/**
+	 * The PasswordField.
+	 */
 	@Component(id = "password")
 	private PasswordField passwordField;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The UserProfile Id.
+	 */
 	private Long userProfileId;
 
 	/**
-	 * Validate the Register form
+	 * The onValidateFromRegistrationForm.
 	 */
-	void onValidateFromRegistrationForm() {
+	public void onValidateFromRegistrationForm() {
 
 		if (!registrationForm.isValid()) {
 			return;
@@ -81,7 +120,7 @@ public class Register {
 						new UserProfileDetails(firstName, lastName, email));
 				userProfileId = userProfile.getUserProfileId();
 			} catch (DuplicateInstanceException e) {
-				registrationForm.recordError(loginNameField, messages.get("error-loginNameAlreadyExists"));	
+				registrationForm.recordError(loginNameField, messages.get("error-loginNameAlreadyExists"));
 			}
 
 		}
@@ -89,9 +128,11 @@ public class Register {
 	}
 
 	/**
-	 * @return The index
+	 * The onSuccess.
+	 * 
+	 * @return The index.
 	 */
-	Object onSuccess() {
+	public Object onSuccess() {
 
 		userSession = new UserSession();
 		userSession.setUserProfileId(userProfileId);

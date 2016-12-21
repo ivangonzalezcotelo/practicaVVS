@@ -15,35 +15,75 @@ import es.udc.pa.pa007.auctionhouse.model.productservice.ProductService;
 import es.udc.pa.pa007.auctionhouse.web.util.ProductGridDataSource;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 
+/**
+ * OwnProducts.
+ *
+ */
 public class OwnProducts {
 
-	private final static int ROWS_PER_PAGE = 4;
+	/**
+	 * The rows per page.
+	 */
+	private final int rowsPerPage = 4;
 
+	/**
+	 * The userProfile Id.
+	 */
 	private Long userId;
+	/**
+	 * The ProductGridDataSource.
+	 */
 	private ProductGridDataSource productGridDataSource;
+	/**
+	 * The Product.
+	 */
 	private Product product;
 
+	/**
+	 * The winner bid.
+	 */
 	@Property
 	private String winnerBid;
 
+	/**
+	 * The current price.
+	 */
 	@Property
 	private BigDecimal actualPrice;
 
+	/**
+	 * The remaining time.
+	 */
 	@Property
 	private String timeRemaining;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The ProductService.
+	 */
 	@Inject
 	private ProductService productService;
 
+	/**
+	 * The Locale.
+	 */
 	@Inject
 	private Locale locale;
 
+	/**
+	 * @return the format.
+	 */
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
@@ -51,18 +91,32 @@ public class OwnProducts {
 		return formatter;
 	}
 
+	/**
+	 * @param userId
+	 *            the userProfile Id.
+	 */
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
+	/**
+	 * @return the ProductGridDataSource.
+	 */
 	public ProductGridDataSource getProductGridDataSource() {
 		return productGridDataSource;
 	}
 
+	/**
+	 * @return the Product.
+	 */
 	public Product getProduct() {
 		return product;
 	}
 
+	/**
+	 * @param product
+	 *            the Product.
+	 */
 	public void setProduct(Product product) {
 		this.product = product;
 		if (product.getWinnerBid() != null) {
@@ -80,11 +134,17 @@ public class OwnProducts {
 
 	}
 
+	/**
+	 * @return the rows per page.
+	 */
 	public int getRowsPerPage() {
-		return ROWS_PER_PAGE;
+		return rowsPerPage;
 	}
 
-	void onActivate() {
+	/**
+	 * The onActivate.
+	 */
+	public void onActivate() {
 
 		this.userId = userSession.getUserProfileId();
 
@@ -92,7 +152,10 @@ public class OwnProducts {
 
 	}
 
-	Object[] onPassivate() {
+	/**
+	 * @return the Object.
+	 */
+	public Object[] onPassivate() {
 		return new Object[] { userId };
 	}
 

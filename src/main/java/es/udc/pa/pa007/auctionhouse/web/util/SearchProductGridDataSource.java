@@ -9,18 +9,45 @@ import es.udc.pa.pa007.auctionhouse.model.product.Product;
 import es.udc.pa.pa007.auctionhouse.model.productservice.ProductService;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * SearchProductGridDataSource.
+ *
+ */
 public class SearchProductGridDataSource implements GridDataSource {
 
+	/**
+	 * The ProductService.
+	 */
 	private ProductService productService;
 
+	/**
+	 * The keys.
+	 */
 	private String keys;
 
+	/**
+	 * The category Id.
+	 */
 	private Long catId;
 
+	/**
+	 * The startIndex.
+	 */
 	private int startIndex;
 
+	/**
+	 * The selection.
+	 */
 	private List<Product> selection;
 
+	/**
+	 * @param productService
+	 *            the ProductService.
+	 * @param catId
+	 *            the category Id.
+	 * @param keys
+	 *            the keys.
+	 */
 	public SearchProductGridDataSource(ProductService productService, Long catId, String keys) {
 		this.productService = productService;
 		this.catId = catId;
@@ -32,6 +59,9 @@ public class SearchProductGridDataSource implements GridDataSource {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getAvailableRows() {
 		try {
@@ -43,17 +73,26 @@ public class SearchProductGridDataSource implements GridDataSource {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Class getRowType() {
 		return Product.class;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Object getRowValue(int arg0) {
 		return selection.get(arg0 - startIndex);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void prepare(int startIndex, int count, List<SortConstraint> arg2) {
 		try {

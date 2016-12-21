@@ -16,12 +16,30 @@ import es.udc.pa.pa007.auctionhouse.web.util.CookiesManager;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * SessionFilter.
+ *
+ */
 public class SessionFilter implements RequestFilter {
 
+	/**
+	 * The applicationStateManager.
+	 */
 	private ApplicationStateManager applicationStateManager;
+	/**
+	 * The Cookies.
+	 */
 	private Cookies cookies;
+	/**
+	 * The userService.
+	 */
 	private UserService userService;
 
+	/**
+	 * @param applicationStateManager the applicationStateManager.
+	 * @param cookies the Cookies.
+	 * @param userService the UserService.
+	 */
 	public SessionFilter(ApplicationStateManager applicationStateManager,
 			Cookies cookies, UserService userService) {
 
@@ -31,6 +49,9 @@ public class SessionFilter implements RequestFilter {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean service(Request request, Response response,
 			RequestHandler handler) throws IOException {
 

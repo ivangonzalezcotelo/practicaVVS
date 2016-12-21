@@ -24,63 +24,121 @@ import es.udc.pa.pa007.auctionhouse.web.util.CategoryEncoder;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * Insert.
+ *
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 public class Insert {
 
+	/**
+	 * The product name.
+	 */
 	@Property
 	private String productName;
 
+	/**
+	 * The description.
+	 */
 	@Property
 	private String description;
 
+	/**
+	 * The launch price.
+	 */
 	@Property
 	private String launchPrice;
 
+	/**
+	 * The send info.
+	 */
 	@Property
 	private String sendInfo;
 
+	/**
+	 * The launch price as BigDecimal.
+	 */
 	private BigDecimal launchPriceAsBigDecimal;
 
+	/**
+	 * The remaining time.
+	 */
 	@Property
 	private int timeRemaining;
 
+	/**
+	 * The Category.
+	 */
 	@Property
 	private Category category;
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The launch price TextField.
+	 */
 	@Component(id = "launchPrice")
 	private TextField launchPriceTextField;
 
+	/**
+	 * The ProductService.
+	 */
 	@Inject
 	private ProductService productService;
 
+	/**
+	 * The insert Form.
+	 */
 	@Component
 	private Form insertForm;
 
+	/**
+	 * The product name TextField.
+	 */
 	@Component(id = "productName")
 	private TextField productNameField;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The category model.
+	 */
 	@Property
 	private SelectModel catModel;
 
+	/**
+	 * The SelectModelFactory.
+	 */
 	@Inject
 	private SelectModelFactory selectModelFactory;
 
+	/**
+	 * The Locale.
+	 */
 	@Inject
 	private Locale locale;
 
+	/**
+	 * @return the CategoryEncoder.
+	 */
 	public CategoryEncoder getCategoryEncoder() {
 		List<Category> categories = productService.getAllCategories();
 		catModel = selectModelFactory.create(categories, "catName");
 		return new CategoryEncoder(catModel);
 	}
 
-	void onValidateFromInsertForm() {
+	/**
+	 * The onValidateFromInsertForm.
+	 */
+	public void onValidateFromInsertForm() {
 		if (!insertForm.isValid()) {
 			return;
 		}
@@ -103,7 +161,10 @@ public class Insert {
 		}
 	}
 
-	Object onSuccess() {
+	/**
+	 * @return the object SuccesfulInsert.
+	 */
+	public Object onSuccess() {
 		return SuccessfulInsert.class;
 	}
 

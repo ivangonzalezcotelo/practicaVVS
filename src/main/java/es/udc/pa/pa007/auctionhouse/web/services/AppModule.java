@@ -18,6 +18,10 @@ import es.udc.pa.pa007.auctionhouse.web.util.SupportedLanguages;
  */
 public class AppModule {
 
+	/**
+	 * @param binder
+	 *            the binder.
+	 */
 	public static void bind(ServiceBinder binder) {
 
 		/* Bind filters. */
@@ -27,19 +31,21 @@ public class AppModule {
 
 	}
 
-    public static void contributeApplicationDefaults(
-        MappedConfiguration<String, Object> configuration) {
+	/**
+	 * @param configuration
+	 *            the configuration.
+	 */
+	public static void contributeApplicationDefaults(MappedConfiguration<String, Object> configuration) {
 
-    	SupportedLanguages.initialize();
-        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,es,gl");
-        configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER,
-        	"jquery");
+		SupportedLanguages.initialize();
+		configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,es,gl");
+		configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
 
-    }
+	}
 
 	/**
 	 * Contribute our {@link ComponentClassTransformWorker2} to transformation
-	 * pipeline to add our code to loaded classes
+	 * pipeline to add our code to loaded classes.
 	 *
 	 * @param configuration
 	 *            component class transformer configuration
@@ -47,52 +53,61 @@ public class AppModule {
 	public static void contributeComponentClassTransformWorker(
 			OrderedConfiguration<ComponentClassTransformWorker2> configuration) {
 
-		configuration.add("AuthenticationPolicy",
-				new AuthenticationPolicyWorker());
+		configuration.add("AuthenticationPolicy", new AuthenticationPolicyWorker());
 
 	}
 
-	public static void contributeRequestHandler(
-			OrderedConfiguration<RequestFilter> configuration,
+	/**
+	 * @param configuration
+	 *            the configuration.
+	 * @param sessionFilter
+	 *            the sessionFilter.
+	 */
+	public static void contributeRequestHandler(OrderedConfiguration<RequestFilter> configuration,
 			SessionFilter sessionFilter) {
 
 		/* Add filters to the RequestHandler service. */
-		configuration.add("SessionFilter", sessionFilter,
-				"after:*");
+		configuration.add("SessionFilter", sessionFilter, "after:*");
 
 	}
 
 	/**
 	 * Contributes "PageRenderAuthenticationFilter" filter which checks for
 	 * access rights of requests.
+	 * 
+	 * @param configuration
+	 *            the configuration.
+	 * @param pageRenderAuthenticationFilter
+	 *            the pageRenderAuthenticationFilter.
 	 */
-	public void contributePageRenderRequestHandler(
-			OrderedConfiguration<PageRenderRequestFilter> configuration,
+	public void contributePageRenderRequestHandler(OrderedConfiguration<PageRenderRequestFilter> configuration,
 			PageRenderRequestFilter pageRenderAuthenticationFilter) {
 
 		/*
 		 * Add filters to the filters pipeline of the PageRender command of the
 		 * MasterDispatcher service.
 		 */
-		configuration.add("PageRenderAuthenticationFilter",
-				pageRenderAuthenticationFilter, "before:*");
+		configuration.add("PageRenderAuthenticationFilter", pageRenderAuthenticationFilter, "before:*");
 
 	}
 
 	/**
 	 * Contribute "PageRenderAuthenticationFilter" filter to determine if the
 	 * event can be processed and the user has enough rights to do so.
+	 * 
+	 * @param configuration
+	 *            the configuration.
+	 * @param componentEventAuthenticationFilter
+	 *            the componentEventAuthenticationFilter.
 	 */
-	public void contributeComponentEventRequestHandler(
-			OrderedConfiguration<ComponentEventRequestFilter> configuration,
+	public void contributeComponentEventRequestHandler(OrderedConfiguration<ComponentEventRequestFilter> configuration,
 			ComponentEventRequestFilter componentEventAuthenticationFilter) {
 
 		/*
 		 * Add filters to the filters pipeline of the ComponentEvent command of
 		 * the MasterDispatcher service.
 		 */
-		configuration.add("ComponentEventAuthenticationFilter",
-				componentEventAuthenticationFilter, "before:*");
+		configuration.add("ComponentEventAuthenticationFilter", componentEventAuthenticationFilter, "before:*");
 
 	}
 

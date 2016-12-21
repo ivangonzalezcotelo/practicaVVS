@@ -20,41 +20,80 @@ import es.udc.pa.pa007.auctionhouse.web.util.CookiesManager;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * Login.
+ *
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.NON_AUTHENTICATED_USERS)
 public class Login {
 
+	/**
+	 * The login name.
+	 */
 	@Property
 	private String loginName;
 
+	/**
+	 * the password.
+	 */
 	@Property
 	private String password;
 
+	/**
+	 * The boolean rememberMyPassword.
+	 */
 	@Property
 	private boolean rememberMyPassword;
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The Cookies.
+	 */
 	@Inject
 	private Cookies cookies;
 
+	/**
+	 * The login Form.
+	 */
 	@Component
 	private Form loginForm;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The UserService.
+	 */
 	@Inject
 	private UserService userService;
 
+	/**
+	 * The UserProfile.
+	 */
 	private UserProfile userProfile = null;
-
+	/**
+	 * The product Id.
+	 */
 	private Long productId;
 
+	/**
+	 * The MakeBid.
+	 */
 	@InjectPage
 	private MakeBid makeBid;
 
-	void onValidateFromLoginForm() {
+	/**
+	 * The onValidateFromLoginForm.
+	 */
+	public void onValidateFromLoginForm() {
 
 		if (!loginForm.isValid()) {
 			return;
@@ -70,23 +109,42 @@ public class Login {
 
 	}
 
+	/**
+	 * @return the product Id.
+	 */
 	public Long getProductId() {
 		return productId;
 	}
 
+	/**
+	 * @param productId
+	 *            the product Id.
+	 */
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 
-	void onActivate(Long productId) {
+	/**
+	 * The onActivate.
+	 * 
+	 * @param productId
+	 *            the product Id.
+	 */
+	public void onActivate(Long productId) {
 		this.productId = productId;
 	}
 
-	Object[] onPassivate() {
+	/**
+	 * @return the object.
+	 */
+	public Object[] onPassivate() {
 		return new Object[] { productId };
 	}
 
-	Object onSuccess() {
+	/**
+	 * @return the MakeBid
+	 */
+	public Object onSuccess() {
 
 		userSession = new UserSession();
 		userSession.setUserProfileId(userProfile.getUserProfileId());

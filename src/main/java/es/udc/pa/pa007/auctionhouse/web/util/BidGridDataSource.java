@@ -9,14 +9,39 @@ import es.udc.pa.pa007.auctionhouse.model.bid.Bid;
 import es.udc.pa.pa007.auctionhouse.model.bidservice.BidService;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * BidGridDataSource.
+ *
+ */
 public class BidGridDataSource implements GridDataSource {
 
+	/**
+	 * The BidService.
+	 */
 	private BidService bidService;
+	/**
+	 * The userProfile Id.
+	 */
 	private Long userId;
+	/**
+	 * The bids.
+	 */
 	private List<Bid> bids;
+	/**
+	 * The start index.
+	 */
 	private int startIndex;
+	/**
+	 * The boolean userNotFound.
+	 */
 	private boolean userNotFound;
 
+	/**
+	 * @param bidService
+	 *            the BidService.
+	 * @param userId
+	 *            the userProfile Id.
+	 */
 	public BidGridDataSource(BidService bidService, Long userId) {
 
 		this.bidService = bidService;
@@ -24,6 +49,9 @@ public class BidGridDataSource implements GridDataSource {
 
 	}
 
+	/**
+	 * @return the available rows.
+	 */
 	public int getAvailableRows() {
 
 		try {
@@ -35,14 +63,30 @@ public class BidGridDataSource implements GridDataSource {
 
 	}
 
+	/**
+	 * @return the row type.
+	 */
 	public Class<Bid> getRowType() {
 		return Bid.class;
 	}
 
+	/**
+	 * @param index
+	 *            the index.
+	 * @return the row value.
+	 */
 	public Object getRowValue(int index) {
 		return bids.get(index - this.startIndex);
 	}
 
+	/**
+	 * @param startIndex
+	 *            the start index.
+	 * @param endIndex
+	 *            the end index.
+	 * @param sortConstraints
+	 *            the sortConstraints.
+	 */
 	public void prepare(int startIndex, int endIndex, List<SortConstraint> sortConstraints) {
 
 		try {
@@ -55,6 +99,9 @@ public class BidGridDataSource implements GridDataSource {
 
 	}
 
+	/**
+	 * @return the boolean userNotFound.
+	 */
 	public boolean getUserNotFound() {
 		return userNotFound;
 	}
