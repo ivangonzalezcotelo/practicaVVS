@@ -27,7 +27,9 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
-
+    
+    /* PR-IN-021 */
+    
     @Test
     public void testRegisterUserAndFindUserProfile()
         throws DuplicateInstanceException, InstanceNotFoundException {
@@ -44,7 +46,9 @@ public class UserServiceTest {
         assertEquals(userProfile, userProfile2);
 
     }
-
+    
+    /* PR-IN-022 */
+    
     @Test(expected = DuplicateInstanceException.class)
     public void testRegisterDuplicatedUser() throws DuplicateInstanceException,
         InstanceNotFoundException {
@@ -61,7 +65,9 @@ public class UserServiceTest {
             userProfileDetails);
 
     }
-
+    
+    /* PR-IN-023 */
+    
     @Test
     public void testLoginClearPassword() throws IncorrectPasswordException,
         InstanceNotFoundException {
@@ -76,7 +82,8 @@ public class UserServiceTest {
 
     }
 
-
+    /* PR-IN-024 */
+    
     @Test
     public void testLoginEncryptedPassword() throws IncorrectPasswordException,
             InstanceNotFoundException {
@@ -89,7 +96,9 @@ public class UserServiceTest {
         assertEquals(userProfile, userProfile2);
 
     }
-
+    
+    /* PR-IN-025 */
+    
     @Test(expected = IncorrectPasswordException.class)
     public void testLoginIncorrectPasword() throws IncorrectPasswordException,
             InstanceNotFoundException {
@@ -101,7 +110,9 @@ public class UserServiceTest {
              false);
 
     }
-
+    
+    /* PR-IN-026 */
+    
     @Test(expected = InstanceNotFoundException.class)
     public void testLoginWithNonExistentUser()
             throws IncorrectPasswordException, InstanceNotFoundException {
@@ -109,14 +120,18 @@ public class UserServiceTest {
         userService.login("user", "userPassword", false);
 
     }
-
+    
+    /* PR-IN-027 */
+    
     @Test(expected = InstanceNotFoundException.class)
     public void testFindNonExistentUser() throws InstanceNotFoundException {
 
         userService.findUserProfile(NON_EXISTENT_USER_PROFILE_ID);
 
     }
-
+    
+    /* PR-IN-028 */
+    
     @Test
     public void testUpdate() throws InstanceNotFoundException,
             IncorrectPasswordException {
@@ -145,7 +160,9 @@ public class UserServiceTest {
             userProfile2.getEmail());
 
     }
-
+    
+    /* PR-IN-029 */
+    
     @Test(expected = InstanceNotFoundException.class)
     public void testUpdateWithNonExistentUser()
             throws InstanceNotFoundException {
@@ -154,7 +171,9 @@ public class UserServiceTest {
             new UserProfileDetails("name", "lastName", "user@udc.es"));
 
     }
-
+    
+    /* PR-IN-030 */
+    
     @Test
     public void testChangePassword() throws InstanceNotFoundException,
             IncorrectPasswordException {
@@ -171,7 +190,9 @@ public class UserServiceTest {
         userService.login(userProfile.getLoginName(), newClearPassword, false);
 
     }
-
+    
+    /* PR-IN-031 */
+    
     @Test(expected = IncorrectPasswordException.class)
     public void testChangePasswordWithIncorrectPassword()
             throws InstanceNotFoundException, IncorrectPasswordException {
@@ -183,7 +204,9 @@ public class UserServiceTest {
             'X' + clearPassword, 'Y' + clearPassword);
 
     }
-
+    
+    /* PR-IN-032 */
+    
     @Test(expected = InstanceNotFoundException.class)
     public void testChangePasswordWithNonExistentUser()
             throws InstanceNotFoundException, IncorrectPasswordException {
@@ -192,7 +215,7 @@ public class UserServiceTest {
                 "userPassword", "XuserPassword");
 
     }
-
+    
     private UserProfile registerUser(String loginName, String clearPassword) {
 
         UserProfileDetails userProfileDetails = new UserProfileDetails(

@@ -133,6 +133,8 @@ public class ProductServiceTest {
 		assertEquals(product2.getProdName() , products.get(1).getProdName());
 	}
 	
+	/* PR-IN-011 */
+	
 	@Test
 	public void testfindNoActiveAuctions()
 			throws InstanceNotFoundException, DuplicateInstanceException{
@@ -154,6 +156,8 @@ public class ProductServiceTest {
 		
 		assertEquals( 0, products.size() ); 
 	}
+	
+	/* PR-IN-012 */
 	
 	@Test
 	public void testFindByCategory() 
@@ -179,6 +183,8 @@ public class ProductServiceTest {
 		assertEquals(product.getCategory().getCatName(), products.get(0).getCategory().getCatName());
 	}
 	
+	/* PR-IN-013 */
+	
 	@Test
 	public void testFindBySeveralKeys() throws DuplicateInstanceException, InstanceNotFoundException{
 		UserProfile owner = userService.registerUser(
@@ -200,6 +206,8 @@ public class ProductServiceTest {
 		assertEquals(product.getProdName(), products.get(0).getProdName());
 		assertEquals(product2.getProdName(), products.get(1).getProdName());
 	}
+	
+	/* PR-IN-014 */
 	
 	@Test
 	public void testFindBySeveralKeysAndCategory() 
@@ -229,7 +237,9 @@ public class ProductServiceTest {
 		assertEquals(product2.getProdName(), products.get(1).getProdName());
 		assertEquals(product2.getCategory().getCatName(), products.get(1).getCategory().getCatName());
 	}
-
+	
+	/* PR-IN-015 */
+	
 	@Test
 	public void testFindProductId() 
 			throws DuplicateInstanceException, InstanceNotFoundException{
@@ -252,6 +262,8 @@ public class ProductServiceTest {
 		assertEquals(product.getProdName(), search.getProdName());
 	}
 	
+	/* PR-IN-016 */
+	
 	@Test(expected = InstanceNotFoundException.class)
 	public void testNoFindProductId() 
 			throws DuplicateInstanceException, InstanceNotFoundException{
@@ -265,6 +277,8 @@ public class ProductServiceTest {
 				"Lugar envio", 2, owner.getUserProfileId(), camaras.getCatId());
 		productServices.findByProductId(new Long(23));
 	}
+	
+	/* PR-IN-017 */
 	
 	@Test
 	public void testGetAllCategorys(){
@@ -281,6 +295,8 @@ public class ProductServiceTest {
 		assertEquals(informatica.getCatName(), categorys.get(1).getCatName());
 	}
 	
+	/* PR-IN-018 */
+	
 	@Test
 	public void testFindCategory() 
 			throws InstanceNotFoundException{
@@ -296,6 +312,8 @@ public class ProductServiceTest {
 		assertEquals(camaras.getCatName(), category.getCatName());
 	}
 	
+	/* PR-IN-019 */
+	
 	@Test(expected = InstanceNotFoundException.class)
 	public void testNoFindCategory() 
 			throws InstanceNotFoundException{
@@ -307,6 +325,8 @@ public class ProductServiceTest {
 		
 		productServices.findCategory(new Long(53));
 	}
+	
+	/* PR-IN-020 */
 	
 	@Test
 	public void testNoGetAllCategorys(){

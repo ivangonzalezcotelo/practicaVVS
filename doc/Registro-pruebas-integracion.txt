@@ -1,0 +1,288 @@
+PR-IN-001
+
+BidService
+listBids()
+Comprobar integración de BidService con BidDao dado un usuario sin apuestas
+userID (Long), Index (int) y contador (int)
+lista de apuestas (List<Bid>)
+Un usuario creado en BD.
+
+PR-IN-002
+
+BidService
+listBids()
+Comprobar la integración de BidService con BidDao dado un usuario con apuestas
+userID (Long), Index (int) y contador (int)
+lista de apuestas (List<Bid>)
+Usuario,categoría, productos y apuestas creadas en BD.
+
+PR-IN-003
+
+BidService
+listBids()
+Comprobar la integración de BidService con BidDao con el lanzamiento de una excepción dada una apuesta realizada por su dueño.
+userID (Long), Index (int) y contador (int)
+Excepción Apuesta Inválida.
+Usuario,categoría, productos y apuestas creados en BD.
+
+PR-IN-004
+
+BidService
+listBids()
+Comprobar la integración de BidService con BidDao con el lanzamiento de una excepción dada una apuesta con valor inferior al inicial.
+userID (Long), Index (int) y contador (int)
+Excepción Apuesta Inválida.
+Usuario,categoría, productos y apuestas creados en BD.
+
+PR-IN-005
+
+BidService
+listBids()
+Comprobar la integración de BidService con BidDao al realizar dos apuestas correctas, la segunda menor que el máximo.
+userID (Long), Index (int) y contador (int)
+lista de apuestas (List<Bid>)
+Usuario,categoría, productos y apuestas creados en BD.
+
+PR-IN-006
+
+BidService
+listBids()
+Comprobar la integración de BidService con BidDao al realizar dos apuestas correctas mayores que el maximo anterior.
+userID (Long), Index (int) y contador (int)
+lista de apuestas (List<Bid>)
+Usuario,categoría, productos y apuestas creados en BD.
+
+PR-IN-007
+
+ProductService
+listProducts()
+Comprobar la integración de ProductService con ProductDao dado un listado filtrado por un usuario dado
+userID (Long), Index (int) y contador (int)
+lista de productos (List<Product>)
+Usuario,categoría y productos creados en BD
+
+PR-IN-008
+
+ProductService
+listProducts()
+Comprobar la integración de ProductService con ProductDao recuperando el listado de un usuario sin productos asignados.
+userID (Long), Index (int) y contador (int)
+lista de productos vacía (List<Product>)
+Usuario creado en BD
+
+PR-IN-009
+
+ProductService
+insertProduct()
+Comprobar la integración de ProductService con ProductDao dado un producto mal creado.
+nombre (String), descripcion (String), precio (BigDecimal), envío (String), ownerID (Long), catID (Long)
+void
+Usuario, categorías y productos creado en BD
+
+PR-IN-010
+
+ProductService
+findActiveAuctions()
+Comprobar la integración de ProductService con ProductDao recuperando todos los productos activos y no los expirados.
+keyword (String), catID (Long), Index (int) y contador (int).
+Lista de productos con los productos en pujas activas (List<Product>)
+Usuario, categoría y productos creados en BD
+
+PR-IN-011
+
+ProductService
+findActiveAuctions()
+Comprobar la integración de ProductService con ProductDao recuperando todos los productos activos y comprobar que no hay ya que solo se creo uno expirado.
+keyword (String), catID (Long), Index (int) y contador (int).
+Lista de productos con los productos en pujas activas (List<Product>)
+Usuario,categoría y producto expirado creados en BD
+
+PR-IN-012
+
+ProductService
+findActiveAuctions()
+Comprobar la integración de ProductService con ProductDao recuperando todos los productos activos comprobando el filtrado por categoría.
+keyword (String), catID (Long), Index (int) y contador (int).
+Lista de productos con los productos en pujas activas (List<Product>)
+Usuario,categorías y producto creados en BD
+
+PR-IN-013
+
+ProductService
+findActiveAuctions()
+Comprobar la integración de ProductService con ProductDao recuperando todos los productos activos filtrando por varías keywords sin categoría.
+keyword (String), catID (Long), Index (int) y contador (int).
+Lista de productos con los productos en pujas activas (List<Product>)
+Usuario,categoría y productos creados en BD
+
+PR-IN-014
+
+ProductService
+findActiveAuctions()
+Comprobar la integración de ProductService con ProductDao recuperando todos los productos activos filtrando por varías keywords y categoría.
+keyword (String), catID (Long), Index (int) y contador (int).
+Lista de productos con los productos en pujas activas (List<Product>)
+Usuario,categorías y productos creados en BD
+
+PR-IN-015
+
+ProductService
+findByProductId()
+Comprobar la integración de ProductService con ProductDao recuperando todos los productos activos filtrando por varías keywords y categoría.
+productID(Long)
+Devuelve el producto correspondiente al ID (Product)
+Usuario,categorías y productos creados en BD
+
+PR-IN-016
+
+ProductService
+findByProductId()
+Comprobar la integración de ProductService con ProductDao recuperando una excepción al recuperar el producto de un ID no registrado.
+ProductID (Long)
+InstanceNotFoundException (Excepción)
+Usuario,categoría y producto creados en BD
+
+PR-IN-017
+
+ProductService
+getAllCategories()
+Comprobar la integración de ProductService con ProductDao recuperando la lista de categorías registradas.
+void
+Lista de categorías creadas (List<Category>)
+Categorías creadas en BD
+
+PR-IN-018
+
+ProductService
+findCategory()
+Comprobar la integración de ProductService con ProductDao recuperando la categoría asociada al Id.
+CategoryID (Long)
+Categoría asociada al ID (Categoría)
+Categoría creada en BD
+
+PR-IN-019
+
+ProductService
+findCategory()
+Comprobar la integración de ProductService con ProductDao comprobando la expceción obtenida tras buscar un ID no registrado.
+CategoryID (Long)
+InstanceNotFoundException (Excepción)
+Categorías creadas en BD (Aunque no son necesarias)
+
+PR-IN-020
+
+ProductService
+getAllCategories()
+Comprobar la integración de ProductService con ProductDao recuperando la lista de categorías antes de registrar ninguna.
+void
+Lista de categorías vacía (List<Category>)
+nada
+
+PR-IN-021
+
+UserService
+findUserProfile()
+Comprobar la integración de UserService con UserDao recuperando el usuario ya registrado asociado a un ID.
+UserID (Long)
+Usuario asociado al Id (UserProfile)
+Usuario creado en BD
+
+PR-IN-022
+
+UserService
+registerUser()
+Comprobar la integración de UserService con UserDao obteniendo la excepción al registrar dos veces el mismo usuario.
+loginname (String), password (String), detalles de usuario (UserProfileDetails)
+Usuario registrado primero, y DuplicateInstanceExcepcion (Excepción) tras el segundo registro.
+Usuario creado en BD una primera vez.
+
+PR-IN-023
+
+UserService
+login()
+Comprobar la integración de UserService con UserDao logueando un usuario y comprobando que devuelve el user registrado con pass sin encriptar
+loginname (String), password no encriptada (String) y passEncriptada? (boolean)
+Usuario asociado a los datos de login (UserProfile)
+Usuario creado en BD
+
+PR-IN-024
+
+UserService
+login()
+Comprobar la integración de UserService con UserDao logueando un usuario y comprobando que devuelve el user registrado con pass encriptada
+loginname (String), password encriptada (String) y passEncriptada? (boolean)
+Usuario asociado a los datos de login (UserProfile)
+Usuario creado en BD
+
+PR-IN-025
+
+UserService
+login()
+Comprobar la integración de UserService con UserDao logueando un usuario con password incorrecta
+loginname (String), password encriptada (String) y passEncriptada? (boolean)
+IncorrectPasswordException (Excepción)
+Usuario creado en BD
+
+PR-IN-026
+
+UserService
+login()
+Comprobar la integración de UserService con UserDao logueando un usuario no registrado
+loginname (String), password encriptada (String) y passEncriptada? (boolean)
+InstanceNotFoundException (Excepción)
+nada
+
+PR-IN-027
+
+UserService
+findUserProfile()
+Comprobar la integración de UserService con UserDao buscando por id un usuario no registrado
+UserID (Long)
+InstanceNotFoundException (Excepción)
+nada
+
+PR-IN-028
+
+UserService
+updateUserProfileDetails()
+Comprobar la integración de UserService con UserDao haciendo update sobre los datos de un usuario ya registrado
+UserID (Long) y detallesdeUsuario (UserProfileDetails)
+void
+Usuario registrado en BD
+
+PR-IN-029
+
+UserService
+updateUserProfileDetails()
+Comprobar la integración de UserService con UserDao haciendo update sobre los datos de un usuario no registrado
+UserID (Long) y detallesdeUsuario (UserProfileDetails)
+InstanceNotFoundException (Excepción)
+nada
+
+PR-IN-030
+
+UserService
+changePassword()
+Comprobar la integración de UserService con UserDao haciendo update sobre la pass de un usuario ya registrado
+UserID (Long), pass antigua (String) y pass nueva (String)
+void
+Usuario creado en BD
+
+PR-IN-031
+
+UserService
+changePassword()
+Comprobar la integración de UserService con UserDao haciendo update sobre la pass de un usuario introduciendo una pass antigua incorrecta
+UserID (Long), pass antigua (String) y pass nueva (String)
+IncorrectPasswordException (Excepción)
+Usuario creado en BD
+
+PR-IN-032
+
+UserService
+changePassword()
+Comprobar la integración de UserService con UserDao haciendo update sobre la pass de un usuario no registrado
+UserID (Long), pass antigua (String) y pass nueva (String)
+InstanceNotFoundException (Excepción)
+nada
+
