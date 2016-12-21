@@ -23,56 +23,111 @@ import es.udc.pa.pa007.auctionhouse.web.pages.user.Login;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * MakeBid.
+ *
+ */
 public class MakeBid {
 
+	/**
+	 * The UserSession.
+	 */
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The Product.
+	 */
 	@Property
 	private Product product;
 
 	// Locale
+	/**
+	 * The max value as BigDecimal.
+	 */
 	private BigDecimal maxValueAsBigDecimal;
 
+	/**
+	 * The product Id.
+	 */
 	@Property
 	private Long productId;
 
+	/**
+	 * The remaining time.
+	 */
 	@Property
 	private String remainingTime;
 
+	/**
+	 * The owner.
+	 */
 	@Property
 	private String owner;
 
+	/**
+	 * The category.
+	 */
 	@Property
 	private String category;
 
+	/**
+	 * The max price.
+	 */
 	@Property
 	private String maxPrice;
 
+	/**
+	 * The current price.
+	 */
 	@Property
 	private BigDecimal actualPrice;
 
+	/**
+	 * The makeBid Form.
+	 */
 	@Component
 	private Form makeBidForm;
 
+	/**
+	 * The max value TextField.
+	 */
 	@Component(id = "maxPrice")
 	private TextField maxValueTextField;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The ProductService.
+	 */
 	@Inject
 	private ProductService productService;
 
+	/**
+	 * The BidService.
+	 */
 	@Inject
 	private BidService bidService;
 
+	/**
+	 * The Login.
+	 */
 	@InjectPage
 	private Login login;
 
+	/**
+	 * The Locale.
+	 */
 	@Inject
 	private Locale locale;
 
+	/**
+	 * @return the Format.
+	 */
 	public Format getFormat() {
 		NumberFormat formatter = NumberFormat.getInstance(locale);
 		formatter.setMaximumFractionDigits(2);
@@ -80,7 +135,11 @@ public class MakeBid {
 		return formatter;
 	}
 
-	Object onActivate(Long productId) {
+	/**
+	 * @param productId the product Id.
+	 * @return the Object.
+	 */
+	public Object onActivate(Long productId) {
 
 		if (userSession == null) {
 			login.setProductId(productId);
@@ -111,15 +170,24 @@ public class MakeBid {
 		return null;
 	}
 
+	/**
+	 * @param productId the product Id.
+	 */
 	public void setProdId(Long productId) {
 		this.productId = productId;
 	}
 
-	Object[] onPassivate() {
+	/**
+	 * @return the Object.
+	 */
+	public Object[] onPassivate() {
 		return new Object[] { productId };
 	}
 
-	void onValidateFromMakeBidForm() {
+	/**
+	 * The validate from makeBidForm.
+	 */
+	public void onValidateFromMakeBidForm() {
 		if (!makeBidForm.isValid()) {
 			return;
 		}
@@ -143,7 +211,10 @@ public class MakeBid {
 		}
 	}
 
-	Object onSuccess() {
+	/**
+	 * @return the Object.
+	 */
+	public Object onSuccess() {
 		return SuccessfulBid.class;
 	}
 

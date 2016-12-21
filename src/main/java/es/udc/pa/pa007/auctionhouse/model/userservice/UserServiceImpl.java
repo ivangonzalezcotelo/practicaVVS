@@ -10,13 +10,23 @@ import es.udc.pa.pa007.auctionhouse.model.userservice.util.PasswordEncrypter;
 import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * Implementation.
+ *
+ */
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 
+    /**
+     * The UserProfileDao.
+     */
     @Autowired
     private UserProfileDao userProfileDao;
 
+    /**
+     * {@inheritDoc}
+     */
     public UserProfile registerUser(String loginName, String clearPassword,
             UserProfileDetails userProfileDetails)
             throws DuplicateInstanceException {
@@ -39,6 +49,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = true)
     public UserProfile login(String loginName, String password,
             boolean passwordIsEncrypted) throws InstanceNotFoundException,
@@ -61,6 +74,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = true)
     public UserProfile findUserProfile(Long userProfileId)
             throws InstanceNotFoundException {
@@ -68,6 +84,9 @@ public class UserServiceImpl implements UserService {
         return userProfileDao.find(userProfileId);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void updateUserProfileDetails(Long userProfileId,
             UserProfileDetails userProfileDetails)
             throws InstanceNotFoundException {
@@ -79,6 +98,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void changePassword(Long userProfileId, String oldClearPassword,
             String newClearPassword) throws IncorrectPasswordException,
             InstanceNotFoundException {

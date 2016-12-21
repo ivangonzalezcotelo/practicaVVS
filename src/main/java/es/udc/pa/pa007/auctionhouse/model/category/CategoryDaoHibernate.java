@@ -13,8 +13,8 @@ import es.udc.pojo.modelutil.dao.GenericDaoHibernate;
 public class CategoryDaoHibernate extends
 		GenericDaoHibernate<Category, Long> implements CategoryDao {
 
-	/* (non-Javadoc)
-	 * @see es.udc.pa.pa007.auctionhouse.model.category.CategoryDao#getAllCategories()
+	/**
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Category> getAllCategories() {

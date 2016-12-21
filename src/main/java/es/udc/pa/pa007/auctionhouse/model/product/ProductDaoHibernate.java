@@ -22,11 +22,8 @@ import es.udc.pojo.modelutil.dao.GenericDaoHibernate;
 @Repository("ProductDao")
 public class ProductDaoHibernate extends GenericDaoHibernate<Product, Long> implements ProductDao {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.product.ProductDao#
-	 * findByKeyAndCategory(java.lang.String, java.lang.Long, int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Product> findByKeyAndCategory(String key, Long categoryId, int startIndex, int count) {
@@ -88,12 +85,8 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Long> impl
 	 * products; }
 	 */
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * es.udc.pa.pa007.auctionhouse.model.product.ProductDao#findByOwner(java.
-	 * lang.Long, int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Product> findByOwner(Long owner, int startIndex, int count) {
@@ -104,12 +97,8 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Long> impl
 				.setParameter("owner", owner).setFirstResult(startIndex).setMaxResults(count).list();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * es.udc.pa.pa007.auctionhouse.model.product.ProductDao#getNumberOfProducts
-	 * (java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public int getNumberOfProducts(Long userId) {
 
@@ -121,11 +110,8 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Long> impl
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.product.ProductDao#
-	 * getNumberOfSearchProducts(java.lang.String, java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public int getNumberOfSearchProducts(String keywords, Long catId) {
 		String[] keys = keywords.split(" ");

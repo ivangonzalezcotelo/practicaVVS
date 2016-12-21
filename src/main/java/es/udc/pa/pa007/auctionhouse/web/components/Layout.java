@@ -13,24 +13,43 @@ import es.udc.pa.pa007.auctionhouse.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa007.auctionhouse.web.util.CookiesManager;
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 
+/**
+ * Layout.
+ *
+ */
 @Import(library = { "tapestry5/bootstrap/js/collapse.js",
 		"tapestry5/bootstrap/js/dropdown.js" }, stylesheet = "tapestry5/bootstrap/css/bootstrap-theme.css")
 public class Layout {
 
+	/**
+	 * The title.
+	 */
 	@Property
 	@Parameter(required = true, defaultPrefix = "message")
 	private String title;
 
+	/**
+	 * The boolean showTitleInBody.
+	 */
 	@Parameter(defaultPrefix = "literal")
 	private Boolean showTitleInBody;
 
+	/**
+	 * The UserSession.
+	 */
 	@Property
 	@SessionState(create = false)
 	private UserSession userSession;
 
+	/**
+	 * The cookies.
+	 */
 	@Inject
 	private Cookies cookies;
 
+	/**
+	 * @return the showTitleInBody.
+	 */
 	public boolean getShowTitleInBody() {
 
 		if (showTitleInBody == null) {
@@ -41,6 +60,9 @@ public class Layout {
 
 	}
 
+	/**
+	 * @return the Index.
+	 */
 	@AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 	Object onActionFromLogout() {
 		userSession = null;

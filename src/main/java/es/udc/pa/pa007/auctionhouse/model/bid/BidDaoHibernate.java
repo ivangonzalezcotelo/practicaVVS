@@ -13,8 +13,8 @@ import es.udc.pojo.modelutil.dao.GenericDaoHibernate;
 @Repository("BidDao")
 public class BidDaoHibernate extends GenericDaoHibernate<Bid, Long> implements BidDao {
 
-	/* (non-Javadoc)
-	 * @see es.udc.pa.pa007.auctionhouse.model.bid.BidDao#findByUser(java.lang.Long, int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Bid> findByUser(Long userId, int startIndex, int count) {
@@ -24,8 +24,8 @@ public class BidDaoHibernate extends GenericDaoHibernate<Bid, Long> implements B
 				.setParameter("userId", userId).setFirstResult(startIndex).setMaxResults(count).list();
 	}
 
-	/* (non-Javadoc)
-	 * @see es.udc.pa.pa007.auctionhouse.model.bid.BidDao#getNumberOfBidsByUserId(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public int getNumberOfBidsByUserId(Long userId) {
 

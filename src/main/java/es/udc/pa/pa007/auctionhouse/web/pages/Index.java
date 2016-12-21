@@ -34,37 +34,72 @@ public class Index {
 	 */
 	private final int index = 5;
 
+	/**
+	 * The ProductsResults.
+	 */
 	@InjectPage
 	private ProductsResults productsResults;
 
+	/**
+	 * The product name.
+	 */
 	@Property
 	private String productName;
 
+	/**
+	 * The search Form.
+	 */
 	@Component
 	private Form searchForm;
 
+	/**
+	 * The ProductService.
+	 */
 	@Inject
 	private ProductService productService;
 
+	/**
+	 * The Messages.
+	 */
 	@Inject
 	private Messages messages;
 
+	/**
+	 * The categorysModel.
+	 */
 	@Property
 	private SelectModel categorysModel;
 
+	/**
+	 * The Category.
+	 */
 	@Property
 	private Category category;
 
+	/**
+	 * The category option.
+	 */
 	@Property
 	private Long catOption;
 
+	/**
+	 * The Locale.
+	 */
 	@Inject
 	private Locale locale;
 
+	/**
+	 * The SelectModelFactory.
+	 */
 	@Inject
 	private SelectModelFactory selectModelFactory;
 
-	List<String> onProvideCompletionsFromProductName(String partial) throws InstanceNotFoundException {
+	/**
+	 * @param partial the partial.
+	 * @return the products which name matches with partial.
+	 * @throws InstanceNotFoundException if not exist the category(never expected cause is always null).
+	 */
+	public List<String> onProvideCompletionsFromProductName(String partial) throws InstanceNotFoundException {
 		List<String> matches = new ArrayList<String>();
 		partial = partial.toUpperCase();
 		for (Product productName : productService.findActiveAuctions(partial, null, 0, index)) {
@@ -74,13 +109,19 @@ public class Index {
 		return matches;
 	}
 
+	/**
+	 * @return the CategoryEncoder.
+	 */
 	public CategoryEncoder getCategoryEncoder() {
 		List<Category> categorys = productService.getAllCategories();
 		categorysModel = selectModelFactory.create(categorys, "catName");
 		return new CategoryEncoder(categorysModel);
 	}
 
-	void onValidateFromSearchForm() {
+	/**
+	 * Search initiation.
+	 */
+	public void onValidateFromSearchForm() {
 		if (productName == null) {
 			productName = new String("");
 		}
@@ -92,7 +133,10 @@ public class Index {
 		}
 	}
 
-	Object onSuccess() {
+	/**
+	 * @return the Object.
+	 */
+	public Object onSuccess() {
 		return productsResults.set(productName, catOption);
 	}
 

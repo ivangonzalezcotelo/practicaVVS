@@ -43,12 +43,8 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao productDao;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * insertProduct(java.lang.String, java.lang.String, java.math.BigDecimal,
-	 * java.lang.String, int, java.lang.Long, java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Product insertProduct(String prodName, String description, BigDecimal launchPrice, String sendInfo,
 			int minsToFinish, Long owner, Long catId) throws InstanceNotFoundException {
@@ -70,11 +66,8 @@ public class ProductServiceImpl implements ProductService {
 		return prod;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * findActiveAuctions(java.lang.String, java.lang.Long, int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public List<Product> findActiveAuctions(String keywords, Long catId, int startIndex, int count)
@@ -85,55 +78,40 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.findByKeyAndCategory(keywords, catId, startIndex, count);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * listProducts(java.lang.Long, int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public List<Product> listProducts(Long userId, int startIndex, int count) throws InstanceNotFoundException {
 		return productDao.findByOwner(userProfileDao.find(userId).getUserProfileId(), startIndex, count);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * findByProductId(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public Product findByProductId(Long productId) throws InstanceNotFoundException {
 		return productDao.find(productId);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * getAllCategories()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public List<Category> getAllCategories() {
 		return catDao.getAllCategories();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * findCategory(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public Category findCategory(Long categoryId) throws InstanceNotFoundException {
 		return catDao.find(categoryId);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * getNumberOfProducts(java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public int getNumberOfProducts(Long userId) throws InstanceNotFoundException {
@@ -146,11 +124,8 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.productservice.ProductService#
-	 * getNumberOfSearhProducts(java.lang.String, java.lang.Long)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public int getNumberOfSearhProducts(String keywords, Long catId) throws InstanceNotFoundException {

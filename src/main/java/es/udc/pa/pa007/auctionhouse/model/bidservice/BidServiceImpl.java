@@ -49,12 +49,8 @@ public class BidServiceImpl implements BidService {
 	@Autowired
 	private UserProfileDao userProfileDao;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * es.udc.pa.pa007.auctionhouse.model.bidservice.BidService#makeBid(java.
-	 * lang.Long, java.lang.Long, java.math.BigDecimal)
+	/**
+	 * {@inheritDoc}
 	 */
 	public Bid makeBid(Long userId, Long prodId, BigDecimal maxPrice)
 			throws InvalidBidException, InstanceNotFoundException {
@@ -115,12 +111,8 @@ public class BidServiceImpl implements BidService {
 		return bid;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * es.udc.pa.pa007.auctionhouse.model.bidservice.BidService#listBids(java.
-	 * lang.Long, int, int)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public List<Bid> listBids(Long userId, int startIndex, int count) throws InstanceNotFoundException {
@@ -128,11 +120,8 @@ public class BidServiceImpl implements BidService {
 		return bidDao.findByUser(userProfileDao.find(userId).getUserProfileId(), startIndex, count);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see es.udc.pa.pa007.auctionhouse.model.bidservice.BidService#
-	 * getNumberOfBidsByUserId(java.lang.Long)
+	/**
+	 * {@inheritDoc}		
 	 */
 	@Transactional(readOnly = true)
 	public int getNumberOfBidsByUserId(Long userId) throws InstanceNotFoundException {
