@@ -3,15 +3,31 @@ package es.udc.pa.pa007.auctionhouse.web.util;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SupportedLanguages {
+/**
+ * SuportedLanguages.
+ *
+ */
+public final class SupportedLanguages {
 
+	/**
+	 * The options.
+	 */
 	private static Map<String, String> options;
 
+	/**
+	 * The codes.
+	 */
 	private static String codes = "";
 
+	/**
+	 * Instance.
+	 */
 	private SupportedLanguages() {
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public static void initialize() {
 
 		/*
@@ -50,10 +66,17 @@ public class SupportedLanguages {
 
 	}
 
+	/**
+	 * @return the codes.
+	 */
 	public static String getCodes() {
 		return codes;
 	}
 
+	/**
+	 * @param languageCode the languageCode.
+	 * @return the code.
+	 */
 	public static String getOptions(String languageCode) {
 
 		String languages = options.get(languageCode);

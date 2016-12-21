@@ -2,7 +2,11 @@ package es.udc.pa.pa007.auctionhouse.model.userservice.util;
 
 import java.util.Random;
 
-public class PasswordEncrypter {
+/**
+ * PasswordEncrypter.
+ *
+ */
+public final class PasswordEncrypter {
 	/*
 	 * "jcrypt" only considers the first 8 characters of the clear text, and
 	 * generates an encrypted text that is always 13 characters in length. The
@@ -22,15 +26,30 @@ public class PasswordEncrypter {
 	 * cookie (see javax.servlet.http.Cookie).
 	 */
 
-	private final static int A_ASCII_CODE = 65;
-	private final static int Z_ASCII_CODE = 90;
-	private final static int NUMBER_OF_LETTERS = Z_ASCII_CODE - A_ASCII_CODE
+	/**
+	 * The "a" ascii code.
+	 */
+	private static final int A_ASCII_CODE = 65;
+	/**
+	 * The "z" ascii code.
+	 */
+	private static final int Z_ASCII_CODE = 90;
+	/**
+	 * The number of letters between "z" and "a".
+	 */
+	private static final int NUMBER_OF_LETTERS = Z_ASCII_CODE - A_ASCII_CODE
 			+ 1;
 
+	/**
+	 * Instantiate.
+	 */
 	private PasswordEncrypter() {
 	}
 
-	private final static String generateRandomSalt() {
+	/**
+	 * @return the generateRandomSalt.
+	 */
+	private static String generateRandomSalt() {
 
 		Random randomGenerator = new Random();
 		byte[] saltAsByteArray = new byte[2];
@@ -44,7 +63,11 @@ public class PasswordEncrypter {
 
 	}
 
-	public final static String crypt(String clearPassword) {
+	/**
+	 * @param clearPassword the clear password.
+	 * @return the encrypted password.
+	 */
+	public static String crypt(String clearPassword) {
 
 		String salt = generateRandomSalt();
 
@@ -52,7 +75,12 @@ public class PasswordEncrypter {
 
 	}
 
-	public final static boolean isClearPasswordCorrect(String clearPassword,
+	/**
+	 * @param clearPassword the clear password
+	 * @param encryptedPassword the encrypted password
+	 * @return if is clear password correct.
+	 */
+	public static boolean isClearPasswordCorrect(String clearPassword,
 			String encryptedPassword) {
 
 		String salt = encryptedPassword.substring(0, 2);

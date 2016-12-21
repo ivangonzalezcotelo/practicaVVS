@@ -7,15 +7,38 @@ import org.apache.tapestry5.services.MetaDataLocator;
 
 import es.udc.pa.pa007.auctionhouse.web.util.UserSession;
 
+/**
+ * AuthenticationValidator.
+ *
+ */
 public class AuthenticationValidator {
 
-	private final static String LOGIN_PAGE = "user/Login";
+	/**
+	 * The login page.
+	 */
+	private static final String LOGIN_PAGE = "user/Login";
 
-	private final static String INIT_PAGE = "Index";
+	/**
+	 * The init page.
+	 */
+	private static final String INIT_PAGE = "Index";
 
+	/**
+	 * The page authentication type.
+	 */
 	public static final String PAGE_AUTHENTICATION_TYPE = "page-authentication-type";
+	/**
+	 * The event handler authentication type.
+	 */
 	public static final String EVENT_HANDLER_AUTHENTICATION_TYPE = "event-handler-authentication-type";
 
+	/**
+	 * @param pageName the page name.
+	 * @param applicationStateManager the ApplicationStateManager.
+	 * @param componentSource the ComponentSource.
+	 * @param locator the locator.
+	 * @return the redirect page.
+	 */
 	public static String checkForPage(String pageName,
 			ApplicationStateManager applicationStateManager,
 			ComponentSource componentSource, MetaDataLocator locator) {
@@ -36,6 +59,16 @@ public class AuthenticationValidator {
 
 	}
 
+	/**
+	 * @param pageName the page name.
+	 * @param componentId the component Id.
+	 * @param eventId the event Id.
+	 * @param eventType the event type.
+	 * @param applicationStateManager the ApplicationStateManager.
+	 * @param componentSource the ComponentSource.
+	 * @param locator the locator.
+	 * @return the redirect page.
+	 */
 	public static String checkForComponentEvent(String pageName,
 			String componentId, String eventId, String eventType,
 			ApplicationStateManager applicationStateManager,
@@ -68,6 +101,11 @@ public class AuthenticationValidator {
 
 	}
 
+	/**
+	 * @param policy the policy.
+	 * @param applicationStateManager the ApplicationStateManager.
+	 * @return the redirect page.
+	 */
 	public static String check(AuthenticationPolicy policy,
 			ApplicationStateManager applicationStateManager) {
 
@@ -79,6 +117,11 @@ public class AuthenticationValidator {
 
 	}
 
+	/**
+	 * @param policyType the policy type.
+	 * @param applicationStateManager the ApplicationStateManager.
+	 * @return the redirect page.
+	 */
 	public static String check(AuthenticationPolicyType policyType,
 			ApplicationStateManager applicationStateManager) {
 		String redirectPage = null;

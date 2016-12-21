@@ -1,0 +1,25 @@
+CHECKSTYLE.
+
+Hemos instalado el plugin Checkstyle Plug-in 7.2.0
+Hemos instalado el conector de m2e maven-checkstyle no se que mas, hay que ponerlo completo.
+
+Hemos creado nuestro propio fichero de configuración de checklist para evitar los siguientes casos:
+
+Que salte si no existe el package-info.
+Que salte si el parametro de un metodo coincide con el nombre del atributo de la clase.
+Que salte di este parametro no esta declarado como final.
+
+Hemos configurado el pom para que use este fichero de configuración y lo hemos adjuntado al proyecto.
+
+La gran mayoría de checks a validar se dividen en 3 grupos:
+	Formato estandar de las clases, se soluciona con una simple combinación de teclas en cada clase (ctrl+shift+f) para dar formato.
+	Documentación javaDoc.
+	Desorden, redundancia o escasez de palabras clave en la declaración de variables y métodos.
+	
+Hemos reducido los checks iniciales de más de 2200 a 146. En estos 146 se recogen los siguientes:
+	El constructor de es.udc.pa.pa007.auctionhouse.model.product.Product tiene mas de 7 parametros, se deberia dividir en 2 objetos tal que Product que contiene un ProductDetails.
+	La clase es.udc.pa.pa007.auctionhouse.model.userservice.util.jcrypt tiene 134 check sin validar, estos son casi todos magic numbers, que al tratarse de una clase compleja de encryptado se han dejado así.
+	La clase es.ud.pa.pa007.auctionhouse.web.services.AuthenticationPolicyWorker tiene un check sin validar que corresponde a un condicional en la misma linea que un return. Se soluciona asignando una variable a ese condicional y haciendo return de dicha variable.
+	La clase es.ud.pa.pa007.auctionhouse.web.services.AuthenticationValidator tiene un check sin validad por no tener un constructor.
+	La clase es.ud.pa.pa007.auctionhouse.web.util.CookiesManager tiene un check sin validar por no tener un constructor.
+	La clase es.ud.pa.pa007.auctionhouse.web.util.SupportedLanguages tiene 3 checks sin validar por nombres no estandarizados de las opciones de idioma.
