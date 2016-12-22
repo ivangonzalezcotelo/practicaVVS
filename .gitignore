@@ -46,6 +46,9 @@ Temporary Items
 Thumbs.db
 ehthumbs.db
 
+# Checkstyle config
+.checkstyle
+
 # Folder config file
 Desktop.ini
 
