@@ -96,18 +96,18 @@ public class ProductServiceTest {
 		Category camaras = new Category("Camaras Fotograficas");
 		categoryDao.save(camaras);
 		
-		productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(-10), 
+		Product p1 = productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(-10), 
 				"Lugar", 2, owner.getUserProfileId(), camaras.getCatId());
 		
-		productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(-10), 
+		Product p2 = productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(-10), 
 				"Lugar", -5, owner.getUserProfileId(), camaras.getCatId());
 		
-		productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(10), 
+		Product p3 = productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(10), 
 				"Lugar", -5, owner.getUserProfileId(), camaras.getCatId());
-		
-		List <Product> products= productServices.listProducts(owner.getUserProfileId(), 0, 10) ;	
-		
-		assertEquals( 0 , products.size());
+			
+		assertEquals(p1, null);
+		assertEquals(p2, null);
+		assertEquals(p3, null);
 	}
 	
 	/* PR-IN-010 */

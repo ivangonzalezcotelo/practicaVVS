@@ -194,6 +194,31 @@ public class BidServiceTest {
 		assertEquals(new BigDecimal(12.5), product.getActualPrice());
 		assertEquals(1, bids.size());
 	}
+	
+	/*PR-IN-33*/
+	
+	@Test(expected = InvalidBidException.class)
+	public void testMakeBidSame() 
+			throws DuplicateInstanceException, InstanceNotFoundException, InvalidBidException{
+		UserProfile user = userService.registerUser(
+				"user", "userPassword", new UserProfileDetails("user", "lastName", "user@udc.es"));		
+		
+		UserProfile user2 = userService.registerUser(
+				"user2", "userPassword2", new UserProfileDetails("user2", "lastName2", "user2@udc.es"));	
+		
+		UserProfile owner = userService.registerUser(
+				"owner", "ownerPassword", new UserProfileDetails("owner", "lastName", "owner@udc.es"));		
+
+		Category cat = new Category("Prueba");
+		categoryDao.save(cat);
+		
+		Product p = productService.insertProduct("Prueba", "Objeto de prueba", new BigDecimal(10), 
+				"Informacion", 4, owner.getUserProfileId(), cat.getCatId());
+		bidService.makeBid(user.getUserProfileId(), p.getProdId(), new BigDecimal(10));
+		
+		bidService.makeBid(user2.getUserProfileId(), p.getProdId(), new BigDecimal(10));
+	};
+	
 	@Test
 	public void checkSettersGetters() 
 			throws DuplicateInstanceException, InvalidBidException, InstanceNotFoundException{

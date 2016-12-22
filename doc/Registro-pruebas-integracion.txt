@@ -286,3 +286,12 @@ UserID (Long), pass antigua (String) y pass nueva (String)
 InstanceNotFoundException (Excepción)
 nada
 
+PR-IN-033
+
+BidService
+makeBid()
+Comprobar la integración de BidService con BidDao haciendo una segunda puja del mismo valor que la actual
+UserID (Long), ProdId (Long) y valor de puja (BigDecimal)
+InvalidBidException (Excepción)
+Usuarios, categoría y producto creados en BD
+

@@ -84,7 +84,7 @@ public class BidServiceImpl implements BidService {
 
 		if (product.getActualPrice() != null) {
 			// Si la puja es inferior al precio actual
-			if (product.getActualPrice().compareTo(maxPrice) > 0) {
+			if (product.getActualPrice().compareTo(maxPrice) >= 0) {
 				throw new InvalidBidException("bid-must-be-greater");
 			}
 
