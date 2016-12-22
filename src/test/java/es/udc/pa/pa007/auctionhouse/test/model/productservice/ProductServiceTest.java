@@ -17,6 +17,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import es.udc.pa.pa007.auctionhouse.model.bid.Bid;
+import es.udc.pa.pa007.auctionhouse.model.bidservice.InvalidBidException;
 import es.udc.pa.pa007.auctionhouse.model.category.Category;
 import es.udc.pa.pa007.auctionhouse.model.category.CategoryDao;
 import es.udc.pa.pa007.auctionhouse.model.product.Product;
@@ -333,5 +335,52 @@ public class ProductServiceTest {
 		List <Category> categorys = productServices.getAllCategories();
 		
 		assertEquals(0, categorys.size());
+	}
+	
+	@Test
+	public void checkSettersGetters() 
+			throws DuplicateInstanceException, InstanceNotFoundException{
+
+		UserProfile owner = userService.registerUser(
+				"owner", "userPassword", new UserProfileDetails("owner", "lastName", "owner@udc.es"));
+		
+		Category cat = new Category("Camaras Fotograficas");
+		categoryDao.save(cat);
+		
+		Product product = productServices.insertProduct( "Canon PowerShot S50", "Camara Fotografica", new BigDecimal(10), 
+				"Lugar de envio", 2, owner.getUserProfileId(),cat.getCatId());
+					
+		Product product2 = new Product();
+		product2.setActualPrice(product.getActualPrice());
+		product2.setCategory(product.getCategory());
+		product2.setCreateDate(product.getCreateDate());
+		product2.setDescription(product.getDescription());
+		product2.setFinishDate(product.getFinishDate());
+		product2.setLaunchPrice(product.getLaunchPrice());
+		product2.setOwner(product.getOwner());
+		product2.setProdId(product.getProdId());
+		product2.setProdName(product.getProdName());
+		product2.setSendInfo(product.getSendInfo());
+		product2.setVersion(product.getVersion());
+		product2.setWinnerBid(product.getWinnerBid());
+		
+		assertEquals(product.getActualPrice(),product2.getActualPrice());
+		assertEquals(product.getCategory(),product2.getCategory());
+		assertEquals(product.getCreateDate(),product2.getCreateDate());
+		assertEquals(product.getDescription(),product2.getDescription());
+		assertEquals(product.getFinishDate(),product2.getFinishDate());
+		assertEquals(product.getLaunchPrice(),product2.getLaunchPrice());
+		assertEquals(product.getOwner(),product2.getOwner());
+		assertEquals(product.getProdId(),product2.getProdId());
+		assertEquals(product.getSendInfo(),product2.getSendInfo());
+		assertEquals(product.getVersion(),product2.getVersion());
+		assertEquals(product.getWinnerBid(),product2.getWinnerBid());
+		
+		Category cat2 = new Category();
+		cat2.setCatId(cat.getCatId());
+		cat2.setCatName(cat.getCatName());
+		
+		assertEquals(cat.getCatId(),cat2.getCatId());
+		assertEquals(cat.getCatName(),cat2.getCatName());
 	}
 }

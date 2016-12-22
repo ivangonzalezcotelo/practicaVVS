@@ -4,6 +4,8 @@ import static es.udc.pa.pa007.auctionhouse.model.util.GlobalNames.SPRING_CONFIG_
 import static es.udc.pa.pa007.auctionhouse.test.util.GlobalNames.SPRING_CONFIG_TEST_FILE;
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.udc.pa.pa007.auctionhouse.model.category.Category;
+import es.udc.pa.pa007.auctionhouse.model.product.Product;
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfile;
 import es.udc.pa.pa007.auctionhouse.model.userservice.IncorrectPasswordException;
 import es.udc.pa.pa007.auctionhouse.model.userservice.UserProfileDetails;
@@ -231,5 +235,30 @@ public class UserServiceTest {
         }
 
     }
+    
+	@Test
+	public void checkSettersGetters() 
+			throws DuplicateInstanceException, InstanceNotFoundException{
+
+		UserProfile user = userService.registerUser(
+				"owner", "userPassword", new UserProfileDetails("owner", "lastName", "owner@udc.es"));
+							
+		UserProfile user2 = new UserProfile();
+		
+		user2.setEmail(user.getEmail());
+		user2.setEncryptedPassword(user.getEncryptedPassword());
+		user2.setFirstName(user.getFirstName());
+		user2.setLastName(user.getLastName());
+		user2.setLoginName(user.getLoginName());
+		user2.setUserProfileId(user.getUserProfileId());
+		
+		assertEquals(user.getEmail(),user2.getEmail());
+		assertEquals(user.getEncryptedPassword(),user2.getEncryptedPassword());
+		assertEquals(user.getFirstName(),user2.getFirstName());
+		assertEquals(user.getLastName(),user2.getLastName());
+		assertEquals(user.getLoginName(),user2.getLoginName());
+		assertEquals(user.getUserProfileId(),user2.getUserProfileId());
+	
+	}
 
 }

@@ -5,6 +5,7 @@ import static es.udc.pa.pa007.auctionhouse.test.util.GlobalNames.SPRING_CONFIG_T
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Test;
@@ -31,7 +32,12 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 @ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
 @Transactional
 public class BidServiceTest {
-
+	
+	public Boolean Bidchecker(Bid bid){
+		bid.getBidId();
+		return null;	
+	}
+	
 	@Autowired
 	private BidService bidService;
 	
@@ -187,5 +193,38 @@ public class BidServiceTest {
 		assertEquals(compradorB.getUserProfileId(), product.getWinnerBid().getActualWin().getUserProfileId());
 		assertEquals(new BigDecimal(12.5), product.getActualPrice());
 		assertEquals(1, bids.size());
+	}
+	@Test
+	public void checkSettersGetters() 
+			throws DuplicateInstanceException, InvalidBidException, InstanceNotFoundException{
+		UserProfile user = userService.registerUser(
+				"user", "userPassword", new UserProfileDetails("user", "lastName", "user@udc.es"));		
+		
+		UserProfile owner = userService.registerUser(
+				"owner", "ownerPassword", new UserProfileDetails("owner", "lastName", "owner@udc.es"));		
+
+		Category camaras = new Category("Camaras Fotográficas");
+		categoryDao.save(camaras);
+		
+		Product product = productService.insertProduct("Canon S50", "Camara de fotos", 
+				new BigDecimal(10), "Informacion", 4, owner.getUserProfileId(), camaras.getCatId());
+		
+		Bid bid = bidService.makeBid(user.getUserProfileId(), product.getProdId(), new BigDecimal(12));
+		
+		Bid bid2 = new Bid();
+		bid2.setBidId(bid.getBidId());
+		bid2.setProductId(bid.getProductId());
+		bid2.setUserId(bid.getUserId());
+		bid2.setCurrentValue(bid.getCurrentValue());
+		bid2.setActualWin(bid.getActualWin());
+		bid2.setBidDate(bid.getBidDate());
+		bid2.setMaxBid(bid.getMaxBid());
+		
+		assertEquals(bid.getBidId(),bid2.getBidId());
+		assertEquals(bid.getProductId(),bid2.getProductId());
+		assertEquals(bid.getCurrentValue(),bid2.getCurrentValue());
+		assertEquals(bid.getActualWin(),bid2.getActualWin());
+		assertEquals(bid.getBidDate(),bid2.getBidDate());
+		assertEquals(bid.getMaxBid(),bid2.getMaxBid());
 	}
 }
