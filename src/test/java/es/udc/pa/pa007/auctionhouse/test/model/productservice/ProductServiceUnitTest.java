@@ -324,7 +324,6 @@ public class ProductServiceUnitTest {
 		Category cat2 = new Category("musica");
 		cat.setCatId(Long.valueOf(2));
 		String prodName = "Ordenador portatil";
-		String prodName2 = "Vinilo";
 		Calendar now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
 		Calendar finish = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
 		finish.add(Calendar.MINUTE, 50);

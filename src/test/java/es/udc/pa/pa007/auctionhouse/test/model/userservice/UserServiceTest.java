@@ -4,8 +4,6 @@ import static es.udc.pa.pa007.auctionhouse.model.util.GlobalNames.SPRING_CONFIG_
 import static es.udc.pa.pa007.auctionhouse.test.util.GlobalNames.SPRING_CONFIG_TEST_FILE;
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.udc.pa.pa007.auctionhouse.model.category.Category;
-import es.udc.pa.pa007.auctionhouse.model.product.Product;
 import es.udc.pa.pa007.auctionhouse.model.userprofile.UserProfile;
 import es.udc.pa.pa007.auctionhouse.model.userservice.IncorrectPasswordException;
 import es.udc.pa.pa007.auctionhouse.model.userservice.UserProfileDetails;

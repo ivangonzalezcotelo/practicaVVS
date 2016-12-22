@@ -5,7 +5,6 @@ import static es.udc.pa.pa007.auctionhouse.test.util.GlobalNames.SPRING_CONFIG_T
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Test;

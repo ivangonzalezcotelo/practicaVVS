@@ -17,8 +17,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import es.udc.pa.pa007.auctionhouse.model.bid.Bid;
-import es.udc.pa.pa007.auctionhouse.model.bidservice.InvalidBidException;
 import es.udc.pa.pa007.auctionhouse.model.category.Category;
 import es.udc.pa.pa007.auctionhouse.model.category.CategoryDao;
 import es.udc.pa.pa007.auctionhouse.model.product.Product;
