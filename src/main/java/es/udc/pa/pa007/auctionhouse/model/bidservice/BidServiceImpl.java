@@ -96,7 +96,7 @@ public class BidServiceImpl implements BidService {
 			} else if (product.getWinnerBid().getMaxBid().compareTo(maxPrice) == 0) {
 				actualPrice = product.getWinnerBid().getMaxBid();
 				actualWinner = product.getWinnerBid().getUserId();
-			} else{
+			} else {
 				actualPrice = maxPrice.add(INCREMENTO);
 				actualWinner = product.getWinnerBid().getUserId();
 			}
@@ -121,7 +121,7 @@ public class BidServiceImpl implements BidService {
 	}
 
 	/**
-	 * {@inheritDoc}		
+	 * {@inheritDoc}
 	 */
 	@Transactional(readOnly = true)
 	public int getNumberOfBidsByUserId(Long userId) throws InstanceNotFoundException {
