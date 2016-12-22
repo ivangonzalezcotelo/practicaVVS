@@ -321,18 +321,24 @@ public class ProductServiceUnitTest {
 		user1.setUserProfileId(Long.valueOf(1));
 		Category cat = new Category("informatica");
 		cat.setCatId(Long.valueOf(1));
+		Category cat2 = new Category("musica");
+		cat.setCatId(Long.valueOf(2));
 		String prodName = "Ordenador portatil";
+		String prodName2 = "Vinilo";
 		Calendar now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
 		Calendar finish = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
 		finish.add(Calendar.MINUTE, 50);
 		new Product(prodName, "Super tocho","Por correo", BigDecimal.valueOf(5), now, finish, user1, cat);
+		new Product(prodName, "Molon","Por correo", BigDecimal.valueOf(5), now, finish, user1, cat2);
 		
 		when(catDao.find(cat.getCatId())).thenReturn(cat);
 		when(productDao.getNumberOfSearchProducts("", cat.getCatId())).thenReturn(1);
+		when(productDao.getNumberOfSearchProducts("", null)).thenReturn(2);
 		
 		int n = productService.getNumberOfSearhProducts("", cat.getCatId());
-		
+		int n2 = productService.getNumberOfSearhProducts("", null);
 		assertEquals(1,n);
+		assertEquals(2,n2);
 	}	
 	
 	//Obtener el numero de productos de una busqueda con categoria incorrecta

@@ -99,6 +99,12 @@ public class ProductServiceTest {
 		productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(-10), 
 				"Lugar", 2, owner.getUserProfileId(), camaras.getCatId());
 		
+		productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(-10), 
+				"Lugar", -5, owner.getUserProfileId(), camaras.getCatId());
+		
+		productServices.insertProduct("Canon PowerShot S50", "Camara Fotografica", new BigDecimal(10), 
+				"Lugar", -5, owner.getUserProfileId(), camaras.getCatId());
+		
 		List <Product> products= productServices.listProducts(owner.getUserProfileId(), 0, 10) ;	
 		
 		assertEquals( 0 , products.size());
@@ -203,7 +209,7 @@ public class ProductServiceTest {
 				"Lugar envio", 10, owner.getUserProfileId(), camaras.getCatId());
 		
 		List <Product> products= productServices.findActiveAuctions("CAN power", null, 0, 10) ;
-		
+
 		assertEquals(2, products.size());
 		assertEquals(product.getProdName(), products.get(0).getProdName());
 		assertEquals(product2.getProdName(), products.get(1).getProdName());

@@ -96,7 +96,7 @@ public class BidServiceImpl implements BidService {
 			} else if (product.getWinnerBid().getMaxBid().compareTo(maxPrice) == 0) {
 				actualPrice = product.getWinnerBid().getMaxBid();
 				actualWinner = product.getWinnerBid().getUserId();
-			} else if (product.getWinnerBid().getMaxBid().compareTo(maxPrice) == 1) {
+			} else{
 				actualPrice = maxPrice.add(INCREMENTO);
 				actualWinner = product.getWinnerBid().getUserId();
 			}
